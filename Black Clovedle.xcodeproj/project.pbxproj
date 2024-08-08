@@ -1,0 +1,612 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D27235E02C64427E0043DE56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27235DF2C64427E0043DE56 /* AppDelegate.swift */; };
+		D27235E22C64427E0043DE56 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27235E12C64427E0043DE56 /* SceneDelegate.swift */; };
+		D27235E42C64427E0043DE56 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27235E32C64427E0043DE56 /* ViewController.swift */; };
+		D27235E72C64427E0043DE56 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D27235E62C64427E0043DE56 /* Base */; };
+		D27235E92C6442820043DE56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D27235E82C6442820043DE56 /* Assets.xcassets */; };
+		D27235EC2C6442820043DE56 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D27235EB2C6442820043DE56 /* Base */; };
+		D27235F72C6442820043DE56 /* Black_ClovedleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27235F62C6442820043DE56 /* Black_ClovedleTests.swift */; };
+		D27236012C6442820043DE56 /* Black_ClovedleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27236002C6442820043DE56 /* Black_ClovedleUITests.swift */; };
+		D27236032C6442820043DE56 /* Black_ClovedleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27236022C6442820043DE56 /* Black_ClovedleUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D27235F32C6442820043DE56 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D27235D42C64427E0043DE56 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D27235DB2C64427E0043DE56;
+			remoteInfo = "Black Clovedle";
+		};
+		D27235FD2C6442820043DE56 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D27235D42C64427E0043DE56 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D27235DB2C64427E0043DE56;
+			remoteInfo = "Black Clovedle";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D27235DC2C64427E0043DE56 /* Black Clovedle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Black Clovedle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D27235DF2C64427E0043DE56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D27235E12C64427E0043DE56 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		D27235E32C64427E0043DE56 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D27235E62C64427E0043DE56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D27235E82C6442820043DE56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D27235EB2C6442820043DE56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D27235ED2C6442820043DE56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D27235F22C6442820043DE56 /* Black ClovedleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Black ClovedleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D27235F62C6442820043DE56 /* Black_ClovedleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Black_ClovedleTests.swift; sourceTree = "<group>"; };
+		D27235FC2C6442820043DE56 /* Black ClovedleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Black ClovedleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D27236002C6442820043DE56 /* Black_ClovedleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Black_ClovedleUITests.swift; sourceTree = "<group>"; };
+		D27236022C6442820043DE56 /* Black_ClovedleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Black_ClovedleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D27235D92C64427E0043DE56 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D27235EF2C6442820043DE56 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D27235F92C6442820043DE56 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D27235D32C64427E0043DE56 = {
+			isa = PBXGroup;
+			children = (
+				D27235DE2C64427E0043DE56 /* Black Clovedle */,
+				D27235F52C6442820043DE56 /* Black ClovedleTests */,
+				D27235FF2C6442820043DE56 /* Black ClovedleUITests */,
+				D27235DD2C64427E0043DE56 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D27235DD2C64427E0043DE56 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D27235DC2C64427E0043DE56 /* Black Clovedle.app */,
+				D27235F22C6442820043DE56 /* Black ClovedleTests.xctest */,
+				D27235FC2C6442820043DE56 /* Black ClovedleUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D27235DE2C64427E0043DE56 /* Black Clovedle */ = {
+			isa = PBXGroup;
+			children = (
+				D27235DF2C64427E0043DE56 /* AppDelegate.swift */,
+				D27235E12C64427E0043DE56 /* SceneDelegate.swift */,
+				D27235E32C64427E0043DE56 /* ViewController.swift */,
+				D27235E52C64427E0043DE56 /* Main.storyboard */,
+				D27235E82C6442820043DE56 /* Assets.xcassets */,
+				D27235EA2C6442820043DE56 /* LaunchScreen.storyboard */,
+				D27235ED2C6442820043DE56 /* Info.plist */,
+			);
+			path = "Black Clovedle";
+			sourceTree = "<group>";
+		};
+		D27235F52C6442820043DE56 /* Black ClovedleTests */ = {
+			isa = PBXGroup;
+			children = (
+				D27235F62C6442820043DE56 /* Black_ClovedleTests.swift */,
+			);
+			path = "Black ClovedleTests";
+			sourceTree = "<group>";
+		};
+		D27235FF2C6442820043DE56 /* Black ClovedleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D27236002C6442820043DE56 /* Black_ClovedleUITests.swift */,
+				D27236022C6442820043DE56 /* Black_ClovedleUITestsLaunchTests.swift */,
+			);
+			path = "Black ClovedleUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D27235DB2C64427E0043DE56 /* Black Clovedle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D27236062C6442820043DE56 /* Build configuration list for PBXNativeTarget "Black Clovedle" */;
+			buildPhases = (
+				D27235D82C64427E0043DE56 /* Sources */,
+				D27235D92C64427E0043DE56 /* Frameworks */,
+				D27235DA2C64427E0043DE56 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Black Clovedle";
+			productName = "Black Clovedle";
+			productReference = D27235DC2C64427E0043DE56 /* Black Clovedle.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D27235F12C6442820043DE56 /* Black ClovedleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D27236092C6442820043DE56 /* Build configuration list for PBXNativeTarget "Black ClovedleTests" */;
+			buildPhases = (
+				D27235EE2C6442820043DE56 /* Sources */,
+				D27235EF2C6442820043DE56 /* Frameworks */,
+				D27235F02C6442820043DE56 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D27235F42C6442820043DE56 /* PBXTargetDependency */,
+			);
+			name = "Black ClovedleTests";
+			productName = "Black ClovedleTests";
+			productReference = D27235F22C6442820043DE56 /* Black ClovedleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D27235FB2C6442820043DE56 /* Black ClovedleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D272360C2C6442820043DE56 /* Build configuration list for PBXNativeTarget "Black ClovedleUITests" */;
+			buildPhases = (
+				D27235F82C6442820043DE56 /* Sources */,
+				D27235F92C6442820043DE56 /* Frameworks */,
+				D27235FA2C6442820043DE56 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D27235FE2C6442820043DE56 /* PBXTargetDependency */,
+			);
+			name = "Black ClovedleUITests";
+			productName = "Black ClovedleUITests";
+			productReference = D27235FC2C6442820043DE56 /* Black ClovedleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D27235D42C64427E0043DE56 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1530;
+				LastUpgradeCheck = 1530;
+				TargetAttributes = {
+					D27235DB2C64427E0043DE56 = {
+						CreatedOnToolsVersion = 15.3;
+					};
+					D27235F12C6442820043DE56 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = D27235DB2C64427E0043DE56;
+					};
+					D27235FB2C6442820043DE56 = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = D27235DB2C64427E0043DE56;
+					};
+				};
+			};
+			buildConfigurationList = D27235D72C64427E0043DE56 /* Build configuration list for PBXProject "Black Clovedle" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D27235D32C64427E0043DE56;
+			productRefGroup = D27235DD2C64427E0043DE56 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D27235DB2C64427E0043DE56 /* Black Clovedle */,
+				D27235F12C6442820043DE56 /* Black ClovedleTests */,
+				D27235FB2C6442820043DE56 /* Black ClovedleUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D27235DA2C64427E0043DE56 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D27235E92C6442820043DE56 /* Assets.xcassets in Resources */,
+				D27235EC2C6442820043DE56 /* Base in Resources */,
+				D27235E72C64427E0043DE56 /* Base in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D27235F02C6442820043DE56 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D27235FA2C6442820043DE56 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D27235D82C64427E0043DE56 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D27235E42C64427E0043DE56 /* ViewController.swift in Sources */,
+				D27235E02C64427E0043DE56 /* AppDelegate.swift in Sources */,
+				D27235E22C64427E0043DE56 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D27235EE2C6442820043DE56 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D27235F72C6442820043DE56 /* Black_ClovedleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D27235F82C6442820043DE56 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D27236032C6442820043DE56 /* Black_ClovedleUITestsLaunchTests.swift in Sources */,
+				D27236012C6442820043DE56 /* Black_ClovedleUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D27235F42C6442820043DE56 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D27235DB2C64427E0043DE56 /* Black Clovedle */;
+			targetProxy = D27235F32C6442820043DE56 /* PBXContainerItemProxy */;
+		};
+		D27235FE2C6442820043DE56 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D27235DB2C64427E0043DE56 /* Black Clovedle */;
+			targetProxy = D27235FD2C6442820043DE56 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D27235E52C64427E0043DE56 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D27235E62C64427E0043DE56 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D27235EA2C6442820043DE56 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D27235EB2C6442820043DE56 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D27236042C6442820043DE56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D27236052C6442820043DE56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D27236072C6442820043DE56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8Y3UR368ZX;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Black Clovedle/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.scott.Black-Clovedle";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D27236082C6442820043DE56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8Y3UR368ZX;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Black Clovedle/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.scott.Black-Clovedle";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D272360A2C6442820043DE56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8Y3UR368ZX;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.scott.Black-ClovedleTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Black Clovedle.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Black Clovedle";
+			};
+			name = Debug;
+		};
+		D272360B2C6442820043DE56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8Y3UR368ZX;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.scott.Black-ClovedleTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Black Clovedle.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Black Clovedle";
+			};
+			name = Release;
+		};
+		D272360D2C6442820043DE56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8Y3UR368ZX;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.scott.Black-ClovedleUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Black Clovedle";
+			};
+			name = Debug;
+		};
+		D272360E2C6442820043DE56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8Y3UR368ZX;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.scott.Black-ClovedleUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Black Clovedle";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D27235D72C64427E0043DE56 /* Build configuration list for PBXProject "Black Clovedle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D27236042C6442820043DE56 /* Debug */,
+				D27236052C6442820043DE56 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D27236062C6442820043DE56 /* Build configuration list for PBXNativeTarget "Black Clovedle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D27236072C6442820043DE56 /* Debug */,
+				D27236082C6442820043DE56 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D27236092C6442820043DE56 /* Build configuration list for PBXNativeTarget "Black ClovedleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D272360A2C6442820043DE56 /* Debug */,
+				D272360B2C6442820043DE56 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D272360C2C6442820043DE56 /* Build configuration list for PBXNativeTarget "Black ClovedleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D272360D2C6442820043DE56 /* Debug */,
+				D272360E2C6442820043DE56 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D27235D42C64427E0043DE56 /* Project object */;
+}
