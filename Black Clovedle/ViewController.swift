@@ -18,7 +18,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     var correctName: String?
     var numberOfGuesses = 0
     var guesses = [String]()
-    var randomCharacter = ""
+    var randomCharacter: String?
     let characterNames = [
         "Asta", "Yuno", "Noelle Silva", "Yami Sukehiro", "Mimosa Vermillion",
         "Luck Voltia", "Fuegoleon Vermillion", "Nozel Silva", "Charlotte Roselei",
@@ -37,8 +37,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         "Zagred", "Liebe", "Gimodelo", "Etagel"
     ]
     var filteredData: [String] = []
-
-
+    let characterInfo = CharacterInfo()
     
     
     override func viewDidLoad() {
@@ -65,15 +64,36 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             tryAgain.text = "great job!"
             self.tableView.reloadData()
         } else {
+            //capitlizing
             guesses.append(guessText.text!.capitalized)
-            //here see if its in the database
-            // //character they guessed.gender == randomCharacter.gender  {
+            var guessedCharacter = guessText.text!
+            let characterObject = characterInfo.characters.filter{ $0.name == guessedCharacter}.first
+            if characterObject == nil {
+                print("cannot find character in database")
+            } else {
+                print("object: \(characterObject!.name)")
+//                print(randomCharacter.gender)
+//                if randomCharacter.gender == String(characterObject?.gender) {
+//                    
+//                }
+                
+                
+                
+                
+                
+                
+                
+                
+                
             }
-                //howdo i do this line
-                // see if the character they guessed has the same gender as the random character
-                // i need the character they guessed
-                // i need the gender of the character they guessed
-                // i need the randomcharacter gender
+                
+            
+                
+          
+            
+            
+                }
+             
             print(guesses)
             tryAgain.text = "try again!"
             self.tableView.reloadData()
@@ -81,7 +101,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         }
         
     func getRandomCharacter() {
-        if let randomCharacter = characters.randomElement() {
+        if let randomCharacter = characterInfo.characters.randomElement() {
             print("Random Character: \(randomCharacter.name), Gender: \(randomCharacter.gender) Affiliation: \(randomCharacter.affiliation), Magic Attribute: \(randomCharacter.magicAttribute), Debut Arch: \(randomCharacter.debutArc)")
             correctName = randomCharacter.name
                 } else {
@@ -117,10 +137,16 @@ extension ViewController: UITableViewDataSource{
         }
     }
     
-    func tableView(_ guessingTableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        guessText.text = filteredData[indexPath.row]
-        guessingTableView.isHidden = false
-        guessText.resignFirstResponder()
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        if tableView == self.tableView {
+            
+        } else {
+            guessText.text = filteredData[indexPath.row]
+            guessingTableView.isHidden = false
+            guessText.resignFirstResponder()
+        }
+        
+       
         
     }
     

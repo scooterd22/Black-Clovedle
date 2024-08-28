@@ -19,6 +19,7 @@
 		D27236102C6445290043DE56 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = D272360F2C6445290043DE56 /* Character.swift */; };
 		D27236132C6464230043DE56 /* Guess.xib in Resources */ = {isa = PBXBuildFile; fileRef = D27236122C6464230043DE56 /* Guess.xib */; };
 		D27236142C6464230043DE56 /* Guess.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27236112C6464230043DE56 /* Guess.swift */; };
+		D2E9403F2C7EEE550014CF91 /* CharacterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E9403E2C7EEE550014CF91 /* CharacterInfo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		D272360F2C6445290043DE56 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		D27236112C6464230043DE56 /* Guess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guess.swift; sourceTree = "<group>"; };
 		D27236122C6464230043DE56 /* Guess.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Guess.xib; sourceTree = "<group>"; };
+		D2E9403E2C7EEE550014CF91 /* CharacterInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				D272360F2C6445290043DE56 /* Character.swift */,
+				D2E9403E2C7EEE550014CF91 /* CharacterInfo.swift */,
 				D27235DF2C64427E0043DE56 /* AppDelegate.swift */,
 				D27235E12C64427E0043DE56 /* SceneDelegate.swift */,
 				D27235E32C64427E0043DE56 /* ViewController.swift */,
@@ -271,6 +274,7 @@
 				D27235E42C64427E0043DE56 /* ViewController.swift in Sources */,
 				D27235E02C64427E0043DE56 /* AppDelegate.swift in Sources */,
 				D27235E22C64427E0043DE56 /* SceneDelegate.swift in Sources */,
+				D2E9403F2C7EEE550014CF91 /* CharacterInfo.swift in Sources */,
 				D27236142C6464230043DE56 /* Guess.swift in Sources */,
 				D27236102C6445290043DE56 /* Character.swift in Sources */,
 			);
