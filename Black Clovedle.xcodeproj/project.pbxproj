@@ -85,7 +85,6 @@
 		D27235D32C64427E0043DE56 = {
 			isa = PBXGroup;
 			children = (
-				D272360F2C6445290043DE56 /* Character.swift */,
 				D27235DE2C64427E0043DE56 /* Black Clovedle */,
 				D27235F52C6442820043DE56 /* Black ClovedleTests */,
 				D27235FF2C6442820043DE56 /* Black ClovedleUITests */,
@@ -106,6 +105,7 @@
 		D27235DE2C64427E0043DE56 /* Black Clovedle */ = {
 			isa = PBXGroup;
 			children = (
+				D272360F2C6445290043DE56 /* Character.swift */,
 				D27235DF2C64427E0043DE56 /* AppDelegate.swift */,
 				D27235E12C64427E0043DE56 /* SceneDelegate.swift */,
 				D27235E32C64427E0043DE56 /* ViewController.swift */,

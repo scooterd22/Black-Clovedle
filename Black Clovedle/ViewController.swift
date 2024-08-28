@@ -8,8 +8,9 @@
 import UIKit
 import Foundation
 
-class ViewController: UIViewController, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate {
     
+    @IBOutlet weak var selectedItemLabel: UILabel!
     @IBOutlet weak var guessingTableView: UITableView!
     @IBOutlet weak var tryAgain: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -17,8 +18,26 @@ class ViewController: UIViewController, UITableViewDelegate {
     var correctName: String?
     var numberOfGuesses = 0
     var guesses = [String]()
-    //var character = Character()
     var randomCharacter = ""
+    let characterNames = [
+        "Asta", "Yuno", "Noelle Silva", "Yami Sukehiro", "Mimosa Vermillion",
+        "Luck Voltia", "Fuegoleon Vermillion", "Nozel Silva", "Charlotte Roselei",
+        "William Vangeance", "Julius Novachrono", "Magna Swing", "Vanessa Enoteca",
+        "Finral Roulacase", "Gauche Adlai", "Charmy Pappitson", "Gordon Agrippa",
+        "Grey", "Secre Swallowtail", "Klaus Lunettes", "Hamon Caseus",
+        "Alecdora Sandler", "Letoile Becquerel", "Langris Vaude", "Rhya the Disloyal",
+        "Patolli (Licht)", "Vetto the Despair", "Fana the Hatred", "Sally",
+        "Rades Spirito", "Valtos", "Licht", "Rhya", "Patolli", "Rill Boismortier",
+        "Kirsch Vermillion", "Dorothy Unsworth", "Jack the Ripper", "Charlotte Roselei",
+        "Sol Marron", "Mereoleona Vermillion", "Leopold Vermillion", "Kaiser Granvorka",
+        "Gueldre Poizot", "Nacht Faust", "Henry Legolant", "Zora Ideale",
+        "Rades Spirito", "Valtos", "Morgen Faust", "Ralph Niaflem", "Svenkin Gatard",
+        "Zenon Zogratis", "Vanica Zogratis", "Dante Zogratis", "Loropechika", "Gadjah",
+        "Undine", "Zennon Zogratis", "Morbius", "Morris Libardirt", "Lucifero",
+        "Zagred", "Liebe", "Gimodelo", "Etagel"
+    ]
+    var filteredData: [String] = []
+
 
     
     
@@ -27,7 +46,12 @@ class ViewController: UIViewController, UITableViewDelegate {
         getRandomCharacter()
         tableView.dataSource = self
         tableView.delegate = self
+        guessingTableView.dataSource = self
+        guessingTableView.delegate = self
+        guessText.delegate = self
+        guessText.addTarget(self, action: #selector(TextfieldDidChange(_:)), for: .editingChanged)
         tableView.register(UINib(nibName: "Guess", bundle: nil), forCellReuseIdentifier: "GuessCell")
+        guessingTableView.isHidden = true
         // Do any additional setup after loading the view.
     }
 
@@ -44,27 +68,18 @@ class ViewController: UIViewController, UITableViewDelegate {
             guesses.append(guessText.text!.capitalized)
             //here see if its in the database
             // //character they guessed.gender == randomCharacter.gender  {
-                
             }
                 //howdo i do this line
-                
-                
                 // see if the character they guessed has the same gender as the random character
                 // i need the character they guessed
                 // i need the gender of the character they guessed
                 // i need the randomcharacter gender
-            
-            
-            
-            
             print(guesses)
             tryAgain.text = "try again!"
             self.tableView.reloadData()
             //append it to table view with correct data points!
         }
         
-            
-    
     func getRandomCharacter() {
         if let randomCharacter = characters.randomElement() {
             print("Random Character: \(randomCharacter.name), Gender: \(randomCharacter.gender) Affiliation: \(randomCharacter.affiliation), Magic Attribute: \(randomCharacter.magicAttribute), Debut Arch: \(randomCharacter.debutArc)")
@@ -77,10 +92,16 @@ class ViewController: UIViewController, UITableViewDelegate {
 
 extension ViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return numberOfGuesses
+        if tableView == self.tableView {
+            return numberOfGuesses
+        } else {
+            return filteredData.count
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if tableView == self.tableView{
         let cell = tableView.dequeueReusableCell(withIdentifier: "GuessCell", for: indexPath) as! Guess
         if guesses.count > 0 {
             cell.characterText.text = guesses[numberOfGuesses - indexPath.row - 1]
@@ -88,12 +109,41 @@ extension ViewController: UITableViewDataSource{
             cell.characterText.text = guesses[indexPath.row]
         }
         return cell
+        } else {
+            let cell = UITableViewCell()
+            cell.textLabel?.text = filteredData[indexPath.row]
+            return cell
+            
+        }
     }
-     
+    
+    func tableView(_ guessingTableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        guessText.text = filteredData[indexPath.row]
+        guessingTableView.isHidden = false
+        guessText.resignFirstResponder()
+        
+    }
     
     
+    @objc func TextfieldDidChange(_ guessText: UITextField) {
+        filterData()
+    }
     
+    func filterData() {
+        let searchText = guessText.text ?? ""
+        filteredData = characterNames.filter({
+            $0.lowercased().contains(searchText.lowercased())
+        })
+        guessingTableView.reloadData()
+    }
+   
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        guessingTableView.isHidden = false
+    }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guessingTableView.isHidden = true
+    }
     
     
     
