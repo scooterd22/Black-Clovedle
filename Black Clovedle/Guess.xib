@@ -88,7 +88,12 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="characterAffiliation" destination="NTm-uF-tT3" id="1vX-VT-ooC"/>
+                <outlet property="characterDebutArch" destination="HPX-8t-shA" id="Hd7-7G-UxO"/>
+                <outlet property="characterGender" destination="a8V-dr-efP" id="kJM-e8-NAJ"/>
                 <outlet property="characterImage" destination="nPI-1f-Gez" id="mNC-c5-bHZ"/>
+                <outlet property="characterMAffiliation" destination="Ikc-bc-RLJ" id="8sV-gE-EIl"/>
+                <outlet property="characterSpirit" destination="1AX-jX-gj3" id="ogx-NE-Jk8"/>
                 <outlet property="characterText" destination="1NJ-uA-3m3" id="vnp-wg-nVB"/>
             </connections>
             <point key="canvasLocation" x="-32.061068702290072" y="-0.35211267605633806"/>

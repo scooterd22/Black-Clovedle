@@ -8,22 +8,22 @@
 import Foundation
 import UIKit
 
-class Character {
+struct Character {
     var name: String
     var gender: String
     var affiliation: String
     var magicAttribute: String
     var spirit: String?
     var debutArc: String
-    var image: UIImage?
+    var imageName: String?
 
-    init(name: String, gender: String, affiliation: String, magicAttribute: String, spirit: String?, debutArc: String, imageName: String) {
-        self.name = name
-        self.gender = gender
-        self.affiliation = affiliation
-        self.magicAttribute = magicAttribute
-        self.spirit = spirit
-        self.debutArc = debutArc
-        self.image = UIImage(named: imageName)
-    }
+//    init(name: String, gender: String, affiliation: String, magicAttribute: String, spirit: String?, debutArc: String, imageName: String) {
+//        self.name = name
+//        self.gender = gender
+//        self.affiliation = affiliation
+//        self.magicAttribute = magicAttribute
+//        self.spirit = spirit
+//        self.debutArc = debutArc
+//        self.image = UIImage(named: imageName)
+//    }
 }

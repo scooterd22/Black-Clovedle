@@ -7,6 +7,7 @@
 
 import UIKit
 import Foundation
+import SwiftUI
 
 class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate {
     
@@ -16,9 +17,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var guessText: UITextField!
     var correctName: String?
+    var correctGender: String?
+    var correctAffiliation: String?
+    var correctMagicAttribute: String?
+    var correctDebutArch: String?
     var numberOfGuesses = 0
     var guesses = [String]()
-    var randomCharacter: String?
+    var randomCharacter = Character.self
     let characterNames = [
         "Asta", "Yuno", "Noelle Silva", "Yami Sukehiro", "Mimosa Vermillion",
         "Luck Voltia", "Fuegoleon Vermillion", "Nozel Silva", "Charlotte Roselei",
@@ -38,6 +43,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     ]
     var filteredData: [String] = []
     let characterInfo = CharacterInfo()
+    let characterUpdates = Guess()
     
     
     override func viewDidLoad() {
@@ -73,9 +79,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             } else {
                 print("object: \(characterObject!.name)")
 //                print(randomCharacter.gender)
-//                if randomCharacter.gender == String(characterObject?.gender) {
-//                    
-//                }
+                if correctGender == characterObject?.gender {
+                    print("same gender as random character")
+                    characterUpdates.characterGender.image = "greenCorrect"
+
+
+                    // how do i fix the line above
+                } else{
+                    print("incorrect gender")
+                   
+
+
+                }
                 
                 
                 
@@ -104,6 +119,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         if let randomCharacter = characterInfo.characters.randomElement() {
             print("Random Character: \(randomCharacter.name), Gender: \(randomCharacter.gender) Affiliation: \(randomCharacter.affiliation), Magic Attribute: \(randomCharacter.magicAttribute), Debut Arch: \(randomCharacter.debutArc)")
             correctName = randomCharacter.name
+            correctGender = randomCharacter.gender
+            correctAffiliation = randomCharacter.affiliation
+            correctMagicAttribute = randomCharacter.magicAttribute
+            correctDebutArch = randomCharacter.debutArc
                 } else {
                     print("error")
                 }
