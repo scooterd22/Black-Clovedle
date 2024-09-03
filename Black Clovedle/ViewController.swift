@@ -26,10 +26,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     var guesses = [String]()
     var gender = [UIImage]()
     // the two below could be images
-    var affliation = [UIImage]()
+    var affiliation = [UIImage]()
     var magicAttribute = [UIImage]()
     var debutArch = [UIImage]()
     var spirit = [UIImage]()
+    var genderTextArray = [String]()
+    var affiliationTextArray = [String]()
+    var magicTextArray = [String]()
+    var spiritTextArray = [String]()
+    var debutArchTextArray = [String]()
     
     var randomCharacter = Character.self
     //Calvin here I put an Array of Character Names but would love to be able to just use character info
@@ -81,10 +86,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             self.tableView.reloadData()
         } else {
             guesses.append(guessText.text!.capitalized)
-                }
-            print(guesses)
             tryAgain.text = "try again!"
+            print(guesses)
             self.tableView.reloadData()
+        }
+            
         
         var guessedCharacter = guessText.text!
         let characterObject = characterInfo.characters.filter{ $0.name == guessedCharacter}.first
@@ -96,44 +102,53 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             if correctGender == characterObject?.gender {
                 print("same gender as random character")
                 gender.append(UIImage(named: "greenCorrectTwo")!)
+                genderTextArray.append(correctGender!)
             } else{
                 print("not the correct gender as random character")
                 gender.append(UIImage(named: "redWrongThree")!)
+                genderTextArray.append(characterObject!.gender)
             }
             
             if correctAffiliation == characterObject?.affiliation {
                 print("same affiliation as random character")
-                affliation.append(UIImage(named: "greenCorrectTwo")!)
+                affiliation.append(UIImage(named: "greenCorrectTwo")!)
+                affiliationTextArray.append(characterObject!.affiliation)
 //                affliation.append(correctAffiliation!)
 
             }else{
                 print("not the same affiliation as random character")
 //                affliation.append(characterObject!.affiliation)
-                affliation.append(UIImage(named: "redWrongThree")!)
-                // where do i get this
+                affiliation.append(UIImage(named: "redWrongThree")!)
+                affiliationTextArray.append(characterObject!.affiliation)
                 
             }
             if correctMagicAttribute == characterObject?.magicAttribute {
                 print("the same magic attribute as random character")
                 magicAttribute.append(UIImage(named: "greenCorrectTwo")!)
+                magicTextArray.append(characterObject!.magicAttribute)
             }else {
                 print("not the same magic attribute as random character")
                 magicAttribute.append(UIImage(named: "redWrongThree")!)
+                magicTextArray.append(characterObject!.magicAttribute)
             }
             
             if correctDebutArch == characterObject?.debutArc {
                 print("the same debut arch as the random character")
                 debutArch.append(UIImage(named: "greenCorrectTwo")!)
+                debutArchTextArray.append(characterObject!.debutArc)
             } else {
                 print ("not the same debut arch as the random character")
                 debutArch.append(UIImage(named: "redWrongThree")!)
+                debutArchTextArray.append(characterObject!.debutArc)
             }
             if correctSpirit == characterObject?.spirit {
                 print("the same spirit as the random character")
                 spirit.append(UIImage(named: "greenCorrectTwo")!)
+                spiritTextArray.append(characterObject!.spirit!)
             }else {
                 print("not the same spirit as the random character")
                 spirit.append(UIImage(named: "redWrongThree")!)
+                spiritTextArray.append(characterObject!.spirit!)
             }
             
             
@@ -177,17 +192,27 @@ extension ViewController: UITableViewDataSource{
         if guesses.count > 0 {
             cell.characterText!.text = guesses[numberOfGuesses - indexPath.row - 1]
             cell.characterGender!.image = gender[numberOfGuesses - indexPath.row - 1]
-            cell.characterAffiliation!.image = affliation[numberOfGuesses - indexPath.row - 1]
+            cell.characterAffiliation!.image = affiliation[numberOfGuesses - indexPath.row - 1]
             cell.characterMAffiliation!.image = magicAttribute[numberOfGuesses - indexPath.row - 1]
             cell.characterDebutArch!.image = debutArch[numberOfGuesses - indexPath.row - 1]
             cell.characterSpirit!.image = spirit[numberOfGuesses - indexPath.row - 1]
+            cell.genderText.text = genderTextArray[numberOfGuesses - indexPath.row - 1]
+            cell.magicAffiliationText.text = magicTextArray[numberOfGuesses - indexPath.row - 1]
+            cell.affiliationText.text = affiliationTextArray[numberOfGuesses - indexPath.row - 1]
+            cell.spiritText.text = spiritTextArray[numberOfGuesses - indexPath.row - 1]
+            cell.debutArchText.text = debutArchTextArray[numberOfGuesses - indexPath.row - 1]
         } else {
             cell.characterText!.text = guesses[numberOfGuesses - indexPath.row - 1]
             cell.characterGender!.image = gender[numberOfGuesses - indexPath.row - 1]
-            cell.characterAffiliation!.image = affliation[numberOfGuesses - indexPath.row - 1]
+            cell.characterAffiliation!.image = affiliation[numberOfGuesses - indexPath.row - 1]
             cell.characterMAffiliation!.image = magicAttribute[numberOfGuesses - indexPath.row - 1]
             cell.characterDebutArch!.image = debutArch[numberOfGuesses - indexPath.row - 1]
             cell.characterSpirit!.image = spirit[numberOfGuesses - indexPath.row - 1]
+            cell.genderText.text = genderTextArray[numberOfGuesses - indexPath.row - 1]
+            cell.magicAffiliationText.text = magicTextArray[numberOfGuesses - indexPath.row - 1]
+            cell.affiliationText.text = affiliationTextArray[numberOfGuesses - indexPath.row - 1]
+            cell.spiritText.text = spiritTextArray[numberOfGuesses - indexPath.row - 1]
+            cell.debutArchText.text = debutArchTextArray[numberOfGuesses - indexPath.row - 1]
         }
         return cell
         } else {
@@ -235,4 +260,5 @@ extension ViewController: UITableViewDataSource{
     
     
 }
+
 

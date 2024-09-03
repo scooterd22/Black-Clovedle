@@ -17,6 +17,11 @@ class Guess: UITableViewCell {
     @IBOutlet weak var characterText: UILabel?
     @IBOutlet weak var characterImage: UIImageView?
     
+    @IBOutlet weak var debutArchText: UILabel!
+    @IBOutlet weak var spiritText: UILabel!
+    @IBOutlet weak var magicAffiliationText: UILabel!
+    @IBOutlet weak var affiliationText: UILabel!
+    @IBOutlet weak var genderText: UILabel!
     var greenCorrect: UIImage = UIImage(named: "greenCorrect")!
     
     
@@ -33,7 +38,7 @@ class Guess: UITableViewCell {
     }
     
     func changeGenderToGreenCorrect() {
-        characterGender?.image = UIImage(named: "greenCorrect")
+        characterGender?.image = UIImage(named: "")
         print("did this run?")
         print(characterGender?.image)
     }
