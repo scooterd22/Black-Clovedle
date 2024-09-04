@@ -63,6 +63,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dismissKeyboard()
         getRandomCharacter()
         tableView.dataSource = self
         tableView.delegate = self
@@ -259,6 +260,20 @@ extension ViewController: UITableViewDataSource{
     
     
     
+}
+
+extension ViewController {
+
+
+    func dismissKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer( target:     self, action:    #selector(self.dismissKeyboardTouchOutside))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc private func dismissKeyboardTouchOutside() {
+        guessText.resignFirstResponder()
+    }
 }
 
 
