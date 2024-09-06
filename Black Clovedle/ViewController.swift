@@ -78,22 +78,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
 
 
     @IBAction func submitPressed(_ sender: Any) {
-        numberOfGuesses += 1
+        var guessedCharacter = guessText.text!
         print(correctName!)
         if guessText.text?.lowercased() == correctName!.lowercased(){
             guesses.append(guessText.text!.capitalized)
             print("success")
-            tryAgain.text = "great job!"
+            tryAgain.text = "Great job!"
+            numberOfGuesses += 1
             self.tableView.reloadData()
-        } else {
+        } else if characterNames.contains(guessText.text!) && guessedCharacter.lowercased() != correctName!.lowercased(){
             guesses.append(guessText.text!.capitalized)
-            tryAgain.text = "try again!"
+            tryAgain.text = "Try again!"
             print(guesses)
+            numberOfGuesses += 1
             self.tableView.reloadData()
+        }else {
+            tryAgain.text = "Character not found"
+            guessText.text = ""
+
         }
             
         
-        var guessedCharacter = guessText.text!
+        
         let characterObject = characterInfo.characters.filter{ $0.name == guessedCharacter}.first
         if characterObject == nil {
             print("cannot find character in database")
@@ -268,11 +274,11 @@ extension ViewController {
     func dismissKeyboard() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer( target:     self, action:    #selector(self.dismissKeyboardTouchOutside))
         tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
+        tableView.addGestureRecognizer(tap)
     }
     
     @objc private func dismissKeyboardTouchOutside() {
-        guessText.resignFirstResponder()
+        view.endEditing(true)
     }
 }
 
