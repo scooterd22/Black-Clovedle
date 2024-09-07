@@ -78,15 +78,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
 
 
     @IBAction func submitPressed(_ sender: Any) {
-        var guessedCharacter = guessText.text!
+        let guessedCharacter = guessText.text!.capitalized
+        print(guessedCharacter)
         print(correctName!)
-        if guessText.text?.lowercased() == correctName!.lowercased(){
+        if guessedCharacter == correctName!.capitalized{
             guesses.append(guessText.text!.capitalized)
             print("success")
             tryAgain.text = "Great job!"
             numberOfGuesses += 1
             self.tableView.reloadData()
-        } else if characterNames.contains(guessText.text!) && guessedCharacter.lowercased() != correctName!.lowercased(){
+        } else if characterNames.contains(guessedCharacter.capitalized) && guessedCharacter.lowercased() != correctName!.lowercased(){
             guesses.append(guessText.text!.capitalized)
             tryAgain.text = "Try again!"
             print(guesses)
@@ -281,5 +282,6 @@ extension ViewController {
         view.endEditing(true)
     }
 }
+
 
 
