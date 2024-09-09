@@ -22,6 +22,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     var correctMagicAttribute: String?
     var correctDebutArch: String?
     var correctSpirit: String?
+    var correctImage: UIImage?
     var numberOfGuesses = 0
     var guesses = [String]()
     var gender = [UIImage]()
@@ -35,7 +36,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     var magicTextArray = [String]()
     var spiritTextArray = [String]()
     var debutArchTextArray = [String]()
-    
+    var characterImagesArray = [UIImage]()
     var randomCharacter = Character.self
     //Calvin here I put an Array of Character Names but would love to be able to just use character info
     let characterNames = [
@@ -158,6 +159,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
                 spirit.append(UIImage(named: "redWrongThree")!)
                 spiritTextArray.append(characterObject!.spirit!)
             }
+            if correctImage == characterObject?.imageName {
+                print("image is correct")
+                characterImagesArray.append(characterObject!.imageName!)
+            }else {
+                characterImagesArray.append(characterObject!.imageName!)
+            }
+            
             
             
             
@@ -178,6 +186,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             correctMagicAttribute = randomCharacter.magicAttribute
             correctDebutArch = randomCharacter.debutArc
             correctSpirit = randomCharacter.spirit
+            correctImage = randomCharacter.imageName
                 } else {
                     print("error")
                 }
@@ -209,6 +218,7 @@ extension ViewController: UITableViewDataSource{
             cell.affiliationText.text = affiliationTextArray[numberOfGuesses - indexPath.row - 1]
             cell.spiritText.text = spiritTextArray[numberOfGuesses - indexPath.row - 1]
             cell.debutArchText.text = debutArchTextArray[numberOfGuesses - indexPath.row - 1]
+            cell.characterImage?.image = characterImagesArray[numberOfGuesses - indexPath.row - 1]
         } else {
             cell.characterText!.text = guesses[numberOfGuesses - indexPath.row - 1]
             cell.characterGender!.image = gender[numberOfGuesses - indexPath.row - 1]
@@ -221,6 +231,7 @@ extension ViewController: UITableViewDataSource{
             cell.affiliationText.text = affiliationTextArray[numberOfGuesses - indexPath.row - 1]
             cell.spiritText.text = spiritTextArray[numberOfGuesses - indexPath.row - 1]
             cell.debutArchText.text = debutArchTextArray[numberOfGuesses - indexPath.row - 1]
+            cell.characterImage?.image = characterImagesArray[numberOfGuesses - indexPath.row - 1]
         }
         return cell
         } else {

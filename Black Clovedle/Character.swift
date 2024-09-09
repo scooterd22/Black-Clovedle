@@ -15,7 +15,7 @@ struct Character {
     var magicAttribute: String
     var spirit: String?
     var debutArc: String
-    var imageName: String?
+    var imageName: UIImage?
 
 //    init(name: String, gender: String, affiliation: String, magicAttribute: String, spirit: String?, debutArc: String, imageName: String) {
 //        self.name = name
