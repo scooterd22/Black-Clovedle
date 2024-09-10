@@ -39,23 +39,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     var characterImagesArray = [UIImage]()
     var randomCharacter = Character.self
     //Calvin here I put an Array of Character Names but would love to be able to just use character info
-    let characterNames = [
-        "Asta", "Yuno", "Noelle Silva", "Yami Sukehiro", "Mimosa Vermillion",
-        "Luck Voltia", "Fuegoleon Vermillion", "Nozel Silva", "Charlotte Roselei",
-        "William Vangeance", "Julius Novachrono", "Magna Swing", "Vanessa Enoteca",
-        "Finral Roulacase", "Gauche Adlai", "Charmy Pappitson", "Gordon Agrippa",
-        "Grey", "Secre Swallowtail", "Klaus Lunettes", "Hamon Caseus",
-        "Alecdora Sandler", "Letoile Becquerel", "Langris Vaude", "Rhya the Disloyal",
-        "Patolli (Licht)", "Vetto the Despair", "Fana the Hatred", "Sally",
-        "Rades Spirito", "Valtos", "Licht", "Rhya", "Patolli", "Rill Boismortier",
-        "Kirsch Vermillion", "Dorothy Unsworth", "Jack the Ripper", "Charlotte Roselei",
-        "Sol Marron", "Mereoleona Vermillion", "Leopold Vermillion", "Kaiser Granvorka",
-        "Gueldre Poizot", "Nacht Faust", "Henry Legolant", "Zora Ideale",
-        "Rades Spirito", "Valtos", "Morgen Faust", "Ralph Niaflem", "Svenkin Gatard",
-        "Zenon Zogratis", "Vanica Zogratis", "Dante Zogratis", "Loropechika", "Gadjah",
-        "Undine", "Zennon Zogratis", "Morbius", "Morris Libardirt", "Lucifero",
-        "Zagred", "Liebe", "Gimodelo", "Etagel"
-    ]
+    let characterNames = ["Asta", "Yuno", "Noelle Silva", "Yami Sukehiro", "Mimosa Vermillion", "Luck Voltia", "Fuegoleon Vermillion", "Nozel Silva", "Charlotte Roselei", "William Vangeance", "Julius Novachrono", "Magna Swing", "Vanessa Enoteca", "Finral Roulacase", "Gauche Adlai", "Charmy Pappitson", "Gordon Agrippa", "Grey", "Secre Swallowtail", "Klaus Lunettes", "Hamon Caseus", "Alecdora Sandler", "Letoile Becquerel", "Langris Vaude", "Rhya the Disloyal", "Licht", "Vetto the Despair", "Fana the Hatred", "Sally", "Rades Spirito", "Valtos", "Licht", "Rill Boismortier", "Kirsch Vermillion", "Dorothy Unsworth", "Jack the Ripper", "Sol Marron", "Mereoleona Vermillion", "Leopold Vermillion", "Kaiser Granvorka", "Gueldre Poizot", "Nacht Faust", "Henry Legolant", "Zora Ideale", "Ralph Niaflem", "Zenon Zogratis", "Vanica Zogratis", "Dante Zogratis", "Loropechika", "Gadjah", "Undine", "Lucifero", "Liebe"]
+
+
     var filteredData: [String] = []
     let characterInfo = CharacterInfo()
     let characterUpdates = Guess()
@@ -88,12 +74,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             tryAgain.text = "Great job!"
             numberOfGuesses += 1
             self.tableView.reloadData()
+            guessText.text = ""
         } else if characterNames.contains(guessedCharacter.capitalized) && guessedCharacter.lowercased() != correctName!.lowercased(){
             guesses.append(guessText.text!.capitalized)
             tryAgain.text = "Try again!"
             print(guesses)
             numberOfGuesses += 1
             self.tableView.reloadData()
+            guessText.text = ""
         }else {
             tryAgain.text = "Character not found"
             guessText.text = ""
@@ -207,7 +195,7 @@ extension ViewController: UITableViewDataSource{
         if tableView == self.tableView{
         let cell = tableView.dequeueReusableCell(withIdentifier: "GuessCell", for: indexPath) as! Guess
         if guesses.count > 0 {
-            cell.characterText!.text = guesses[numberOfGuesses - indexPath.row - 1]
+//            cell.characterText!.text = guesses[numberOfGuesses - indexPath.row - 1]
             cell.characterGender!.image = gender[numberOfGuesses - indexPath.row - 1]
             cell.characterAffiliation!.image = affiliation[numberOfGuesses - indexPath.row - 1]
             cell.characterMAffiliation!.image = magicAttribute[numberOfGuesses - indexPath.row - 1]
@@ -220,7 +208,7 @@ extension ViewController: UITableViewDataSource{
             cell.debutArchText.text = debutArchTextArray[numberOfGuesses - indexPath.row - 1]
             cell.characterImage?.image = characterImagesArray[numberOfGuesses - indexPath.row - 1]
         } else {
-            cell.characterText!.text = guesses[numberOfGuesses - indexPath.row - 1]
+//            cell.characterText!.text = guesses[numberOfGuesses - indexPath.row - 1]
             cell.characterGender!.image = gender[numberOfGuesses - indexPath.row - 1]
             cell.characterAffiliation!.image = affiliation[numberOfGuesses - indexPath.row - 1]
             cell.characterMAffiliation!.image = magicAttribute[numberOfGuesses - indexPath.row - 1]
