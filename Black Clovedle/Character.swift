@@ -14,6 +14,7 @@ struct Character {
     var affiliation: String
     var magicAttribute: String
     var spirit: String?
+    var arcNumber: Int
     var debutArc: String
     var imageName: UIImage?
 

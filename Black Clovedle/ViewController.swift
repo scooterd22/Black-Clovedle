@@ -39,7 +39,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     var characterImagesArray = [UIImage]()
     var randomCharacter = Character.self
     //Calvin here I put an Array of Character Names but would love to be able to just use character info
-    let characterNames = ["Asta", "Yuno", "Noelle Silva", "Yami Sukehiro", "Mimosa Vermillion", "Luck Voltia", "Fuegoleon Vermillion", "Nozel Silva", "Charlotte Roselei", "William Vangeance", "Julius Novachrono", "Magna Swing", "Vanessa Enoteca", "Finral Roulacase", "Gauche Adlai", "Charmy Pappitson", "Gordon Agrippa", "Grey", "Secre Swallowtail", "Klaus Lunettes", "Hamon Caseus", "Alecdora Sandler", "Letoile Becquerel", "Langris Vaude", "Rhya the Disloyal", "Licht", "Vetto the Despair", "Fana the Hatred", "Sally", "Rades Spirito", "Valtos", "Licht", "Rill Boismortier", "Kirsch Vermillion", "Dorothy Unsworth", "Jack the Ripper", "Sol Marron", "Mereoleona Vermillion", "Leopold Vermillion", "Kaiser Granvorka", "Gueldre Poizot", "Nacht Faust", "Henry Legolant", "Zora Ideale", "Ralph Niaflem", "Zenon Zogratis", "Vanica Zogratis", "Dante Zogratis", "Loropechika", "Gadjah", "Undine", "Lucifero", "Liebe"]
+    let characterNames = ["Asta", "Yuno", "Noelle Silva", "Yami Sukehiro", "Mimosa Vermillion", "Luck Voltia", "Fuegoleon Vermillion", "Nozel Silva", "Charlotte Roselei", "William Vangeance", "Julius Novachrono", "Magna Swing", "Vanessa Enoteca", "Finral Roulacase", "Gauche Adlai", "Charmy Pappitson", "Gordon Agrippa", "Grey", "Secre Swallowtail", "Klaus Lunettes", "Hamon Caseus", "Alecdora Sandler", "Letoile Becquerel", "Langris Vaude", "Rhya the Disloyal", "Licht", "Vetto the Despair", "Fana the Hatred", "Sally", "Rades Spirito", "Valtos", "Rill Boismortier", "Kirsch Vermillion", "Zora Ideale", "Nacht Faust", "Zenon Zogratis", "Vanica Zogratis", "Dante Zogratis", "Liebe", "Mereoleona Vermillion", "Mars", "Ladros", "Sekke Bronzazza", "Solid Silva", "Nebra Silva", "Kaiser Granvorka", "Ralph Niaflem", "Damnatio Kira", "Morgen Faust", "Lily Aquaria", "Dorothy Unsworth"]
+
 
 
     var filteredData: [String] = []
@@ -75,6 +76,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             numberOfGuesses += 1
             self.tableView.reloadData()
             guessText.text = ""
+        } else if guesses.contains(guessedCharacter) {
+            tryAgain.text = "You've already guessed this character"
+            guessText.text = ""
         } else if characterNames.contains(guessedCharacter.capitalized) && guessedCharacter.lowercased() != correctName!.lowercased(){
             guesses.append(guessText.text!.capitalized)
             tryAgain.text = "Try again!"
@@ -82,7 +86,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             numberOfGuesses += 1
             self.tableView.reloadData()
             guessText.text = ""
-        }else {
+        } else {
             tryAgain.text = "Character not found"
             guessText.text = ""
 
