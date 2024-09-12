@@ -76,6 +76,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             numberOfGuesses += 1
             self.tableView.reloadData()
             guessText.text = ""
+            //wait 1 second timer then transition to other screen
         } else if guesses.contains(guessedCharacter) {
             tryAgain.text = "You've already guessed this character"
             guessText.text = ""
@@ -182,6 +183,40 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
                 } else {
                     print("error")
                 }
+    }
+    
+    @IBAction func buttonToReset(_ sender: Any) {
+        resetGame()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "CharacterCorrectViewController" {
+            if let destinationVC = segue.destination as? CharacterCorrectViewController {
+                destinationVC.correctCharacter = correctName!
+//                destinationVC.todaysCharacterImage = characterImagesArray.count - 1
+            }
+        }
+    }
+    
+    
+    func resetGame(){
+        guessText.text = ""
+        getRandomCharacter()
+        tryAgain.text = "Guess today's Black Clover Character!"
+        numberOfGuesses = 0
+        guesses = []
+        gender = [UIImage]()
+        affiliation = [UIImage]()
+        magicAttribute = [UIImage]()
+        debutArch = [UIImage]()
+        spirit = [UIImage]()
+        genderTextArray = [String]()
+        affiliationTextArray = [String]()
+        magicTextArray = [String]()
+        spiritTextArray = [String]()
+        debutArchTextArray = [String]()
+        characterImagesArray = [UIImage]()
+        self.tableView.reloadData()
     }
 }
 

@@ -21,6 +21,7 @@
 		D27236142C6464230043DE56 /* Guess.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27236112C6464230043DE56 /* Guess.swift */; };
 		D2E9403F2C7EEE550014CF91 /* CharacterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E9403E2C7EEE550014CF91 /* CharacterInfo.swift */; };
 		D2E940412C87D9040014CF91 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E940402C87D9040014CF91 /* File.swift */; };
+		D2E940432C9368900014CF91 /* CharacterCorrectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E940422C9368900014CF91 /* CharacterCorrectViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		D27236122C6464230043DE56 /* Guess.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Guess.xib; sourceTree = "<group>"; };
 		D2E9403E2C7EEE550014CF91 /* CharacterInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInfo.swift; sourceTree = "<group>"; };
 		D2E940402C87D9040014CF91 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		D2E940422C9368900014CF91 /* CharacterCorrectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCorrectViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				D27235E12C64427E0043DE56 /* SceneDelegate.swift */,
 				D27235E32C64427E0043DE56 /* ViewController.swift */,
 				D27235E52C64427E0043DE56 /* Main.storyboard */,
+				D2E940422C9368900014CF91 /* CharacterCorrectViewController.swift */,
 				D27235E82C6442820043DE56 /* Assets.xcassets */,
 				D27235EA2C6442820043DE56 /* LaunchScreen.storyboard */,
 				D27235ED2C6442820043DE56 /* Info.plist */,
@@ -279,6 +282,7 @@
 				D2E940412C87D9040014CF91 /* File.swift in Sources */,
 				D27235E22C64427E0043DE56 /* SceneDelegate.swift in Sources */,
 				D2E9403F2C7EEE550014CF91 /* CharacterInfo.swift in Sources */,
+				D2E940432C9368900014CF91 /* CharacterCorrectViewController.swift in Sources */,
 				D27236142C6464230043DE56 /* Guess.swift in Sources */,
 				D27236102C6445290043DE56 /* Character.swift in Sources */,
 			);
