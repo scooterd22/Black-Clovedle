@@ -111,6 +111,7 @@
                         <outlet property="guessingTableView" destination="dU7-8t-MBI" id="FOd-zJ-oN1"/>
                         <outlet property="tableView" destination="YRU-TH-hMe" id="joT-6F-PfJ"/>
                         <outlet property="tryAgain" destination="cTu-ng-HkA" id="ANT-uL-Rrq"/>
+                        <segue destination="9Eq-45-HBK" kind="showDetail" identifier="CharacterCorrectViewController" id="uH5-Zi-Pth"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -120,9 +121,9 @@
         <!--CharacterCorrectViewController-->
         <scene sceneID="3vj-DK-pF1">
             <objects>
-                <viewController title="CharacterCorrectViewController" id="9Eq-45-HBK" userLabel="CharacterCorrectViewController" customClass="CharacterCorrectViewController" customModule="Black_Clovedle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CharacterCorrectViewController" title="CharacterCorrectViewController" id="9Eq-45-HBK" userLabel="CharacterCorrectViewController" customClass="CharacterCorrectViewController" customModule="Black_Clovedle" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BnU-rB-q7Y">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Todays Character was Mimosa!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DtU-6L-eSu">
@@ -132,7 +133,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZIJ-L1-Bwk">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Alecdora" translatesAutoresizingMaskIntoConstraints="NO" id="ZIJ-L1-Bwk">
                                 <rect key="frame" x="76" y="177" width="243" height="263"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -161,6 +162,7 @@
                         <viewLayoutGuide key="safeArea" id="8Dr-RD-eIx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="rMk-SO-38a"/>
                     <connections>
                         <outlet property="countdown" destination="Afm-dT-AfK" id="MGS-xd-B0J"/>
                         <outlet property="todaysCharacter" destination="DtU-6L-eSu" id="yUg-f5-XCP"/>
@@ -169,10 +171,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NSv-rb-3tu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="325.95419847328242" y="-21.126760563380284"/>
+            <point key="canvasLocation" x="1305" y="-1"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Alecdora" width="564" height="317"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

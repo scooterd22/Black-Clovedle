@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="374" height="75"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="equalSpacing" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Rgt-fT-PrL" userLabel="H Stack View">
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Rgt-fT-PrL" userLabel="H Stack View">
                         <rect key="frame" x="13" y="2" width="348" height="70"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nPI-1f-Gez" userLabel="Character Image">

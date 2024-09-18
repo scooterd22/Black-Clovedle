@@ -76,6 +76,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             numberOfGuesses += 1
             self.tableView.reloadData()
             guessText.text = ""
+            performSegue(withIdentifier: "CharacterCorrectViewController", sender: nil)
+//            presentViewController(CharacterCorrectViewController, animated: true, completion: nil)
+//      
             //wait 1 second timer then transition to other screen
         } else if guesses.contains(guessedCharacter) {
             tryAgain.text = "You've already guessed this character"
@@ -193,7 +196,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         if segue.identifier == "CharacterCorrectViewController" {
             if let destinationVC = segue.destination as? CharacterCorrectViewController {
                 destinationVC.correctCharacter = correctName!
-//                destinationVC.todaysCharacterImage = characterImagesArray.count - 1
+                destinationVC.todaysCharacterImage.image = 
             }
         }
     }
