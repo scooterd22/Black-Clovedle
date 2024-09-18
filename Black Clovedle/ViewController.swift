@@ -196,7 +196,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         if segue.identifier == "CharacterCorrectViewController" {
             if let destinationVC = segue.destination as? CharacterCorrectViewController {
                 destinationVC.correctCharacter = correctName!
-                destinationVC.todaysCharacterImage.image = 
+                // this is my fatal bug, getting nil when unwrapping an optional
+//                destinationVC.todaysCharacterImage!.image = correctImage!
             }
         }
     }
