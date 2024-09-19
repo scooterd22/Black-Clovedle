@@ -39,10 +39,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     var characterImagesArray = [UIImage]()
     var randomCharacter = Character.self
     //Calvin here I put an Array of Character Names but would love to be able to just use character info
-    let characterNames = ["Asta", "Yuno", "Noelle Silva", "Yami Sukehiro", "Mimosa Vermillion", "Luck Voltia", "Fuegoleon Vermillion", "Nozel Silva", "Charlotte Roselei", "William Vangeance", "Julius Novachrono", "Magna Swing", "Vanessa Enoteca", "Finral Roulacase", "Gauche Adlai", "Charmy Pappitson", "Gordon Agrippa", "Grey", "Secre Swallowtail", "Klaus Lunettes", "Hamon Caseus", "Alecdora Sandler", "Letoile Becquerel", "Langris Vaude", "Rhya the Disloyal", "Licht", "Vetto the Despair", "Fana the Hatred", "Sally", "Rades Spirito", "Valtos", "Rill Boismortier", "Kirsch Vermillion", "Zora Ideale", "Nacht Faust", "Zenon Zogratis", "Vanica Zogratis", "Dante Zogratis", "Liebe", "Mereoleona Vermillion", "Mars", "Ladros", "Sekke Bronzazza", "Solid Silva", "Nebra Silva", "Kaiser Granvorka", "Ralph Niaflem", "Damnatio Kira", "Morgen Faust", "Lily Aquaria", "Dorothy Unsworth"]
-
-
-
+    let characterNames = ["Asta", "Yuno", "Noelle Silva", "Yami Sukehiro", "Mimosa Vermillion", "Luck Voltia", "Fuegoleon Vermillion", "Nozel Silva", "Charlotte Roselei", "William Vangeance", "Julius Novachrono", "Magna Swing", "Vanessa Enoteca", "Finral Roulacase", "Gauche Adlai", "Charmy Pappitson", "Gordon Agrippa", "Grey", "Secre Swallowtail", "Klaus Lunettes", "Hamon Caseus", "Alecdora Sandler", "Letoile Becquerel", "Langris Vaude", "Rhya the Disloyal", "Licht", "Vetto the Despair", "Fana The Hatred", "Sally", "Rades Spirito", "Valtos", "Rill Boismortier", "Kirsch Vermillion", "Zora Ideale", "Nacht Faust", "Zenon Zogratis", "Vanica Zogratis", "Dante Zogratis", "Liebe", "Mereoleona Vermillion", "Mars", "Ladros", "Sekke Bronzazza", "Solid Silva", "Nebra Silva", "Kaiser Granvorka", "Ralph Niaflem", "Damnatio Kira", "Morgen Faust", "Lily Aquaria", "Dorothy Unsworth"]
+    
+    
+    
     var filteredData: [String] = []
     let characterInfo = CharacterInfo()
     let characterUpdates = Guess()
@@ -63,8 +63,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         guessingTableView.isHidden = true
         // Do any additional setup after loading the view.
     }
-
-
+    
+    
     @IBAction func submitPressed(_ sender: Any) {
         let guessedCharacter = guessText.text!.capitalized
         print(guessedCharacter)
@@ -77,8 +77,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             self.tableView.reloadData()
             guessText.text = ""
             performSegue(withIdentifier: "CharacterCorrectViewController", sender: nil)
-//            presentViewController(CharacterCorrectViewController, animated: true, completion: nil)
-//      
+            //            presentViewController(CharacterCorrectViewController, animated: true, completion: nil)
+            //
             //wait 1 second timer then transition to other screen
         } else if guesses.contains(guessedCharacter) {
             tryAgain.text = "You've already guessed this character"
@@ -93,9 +93,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         } else {
             tryAgain.text = "Character not found"
             guessText.text = ""
-
-        }
             
+        }
+        
         
         
         let characterObject = characterInfo.characters.filter{ $0.name == guessedCharacter}.first
@@ -118,11 +118,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
                 print("same affiliation as random character")
                 affiliation.append(UIImage(named: "greenCorrectTwo")!)
                 affiliationTextArray.append(characterObject!.affiliation)
-//                affliation.append(correctAffiliation!)
-
+                //                affliation.append(correctAffiliation!)
+                
             }else{
                 print("not the same affiliation as random character")
-//                affliation.append(characterObject!.affiliation)
+                //                affliation.append(characterObject!.affiliation)
                 affiliation.append(UIImage(named: "redWrongThree")!)
                 affiliationTextArray.append(characterObject!.affiliation)
                 
@@ -158,21 +158,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             if correctImage == characterObject?.imageName {
                 print("image is correct")
                 characterImagesArray.append(characterObject!.imageName!)
+                print(characterImagesArray.last)
             }else {
                 characterImagesArray.append(characterObject!.imageName!)
             }
             
-            
-            
-            
-            
-            
-            
-            
-            
         }
-        }
-        
+    }
+    
     func getRandomCharacter() {
         if let randomCharacter = characterInfo.characters.randomElement() {
             print("Random Character: \(randomCharacter.name), Gender: \(randomCharacter.gender) Affiliation: \(randomCharacter.affiliation), Magic Attribute: \(randomCharacter.magicAttribute), Debut Arch: \(randomCharacter.debutArc)")
@@ -183,9 +176,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             correctDebutArch = randomCharacter.debutArc
             correctSpirit = randomCharacter.spirit
             correctImage = randomCharacter.imageName
-                } else {
-                    print("error")
-                }
+//            print("this is the right thing \(correctImage)")
+        } else {
+            print("error")
+        }
     }
     
     @IBAction func buttonToReset(_ sender: Any) {
@@ -196,8 +190,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         if segue.identifier == "CharacterCorrectViewController" {
             if let destinationVC = segue.destination as? CharacterCorrectViewController {
                 destinationVC.correctCharacter = correctName!
-                // this is my fatal bug, getting nil when unwrapping an optional
-//                destinationVC.todaysCharacterImage!.image = correctImage!
+                destinationVC.correctImageSecondView = UIImage(named: "\(correctImage)")
             }
         }
     }
@@ -236,35 +229,35 @@ extension ViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == self.tableView{
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GuessCell", for: indexPath) as! Guess
-        if guesses.count > 0 {
-//            cell.characterText!.text = guesses[numberOfGuesses - indexPath.row - 1]
-            cell.characterGender!.image = gender[numberOfGuesses - indexPath.row - 1]
-            cell.characterAffiliation!.image = affiliation[numberOfGuesses - indexPath.row - 1]
-            cell.characterMAffiliation!.image = magicAttribute[numberOfGuesses - indexPath.row - 1]
-            cell.characterDebutArch!.image = debutArch[numberOfGuesses - indexPath.row - 1]
-            cell.characterSpirit!.image = spirit[numberOfGuesses - indexPath.row - 1]
-            cell.genderText.text = genderTextArray[numberOfGuesses - indexPath.row - 1]
-            cell.magicAffiliationText.text = magicTextArray[numberOfGuesses - indexPath.row - 1]
-            cell.affiliationText.text = affiliationTextArray[numberOfGuesses - indexPath.row - 1]
-            cell.spiritText.text = spiritTextArray[numberOfGuesses - indexPath.row - 1]
-            cell.debutArchText.text = debutArchTextArray[numberOfGuesses - indexPath.row - 1]
-            cell.characterImage?.image = characterImagesArray[numberOfGuesses - indexPath.row - 1]
-        } else {
-//            cell.characterText!.text = guesses[numberOfGuesses - indexPath.row - 1]
-            cell.characterGender!.image = gender[numberOfGuesses - indexPath.row - 1]
-            cell.characterAffiliation!.image = affiliation[numberOfGuesses - indexPath.row - 1]
-            cell.characterMAffiliation!.image = magicAttribute[numberOfGuesses - indexPath.row - 1]
-            cell.characterDebutArch!.image = debutArch[numberOfGuesses - indexPath.row - 1]
-            cell.characterSpirit!.image = spirit[numberOfGuesses - indexPath.row - 1]
-            cell.genderText.text = genderTextArray[numberOfGuesses - indexPath.row - 1]
-            cell.magicAffiliationText.text = magicTextArray[numberOfGuesses - indexPath.row - 1]
-            cell.affiliationText.text = affiliationTextArray[numberOfGuesses - indexPath.row - 1]
-            cell.spiritText.text = spiritTextArray[numberOfGuesses - indexPath.row - 1]
-            cell.debutArchText.text = debutArchTextArray[numberOfGuesses - indexPath.row - 1]
-            cell.characterImage?.image = characterImagesArray[numberOfGuesses - indexPath.row - 1]
-        }
-        return cell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "GuessCell", for: indexPath) as! Guess
+            if guesses.count > 0 {
+                //            cell.characterText!.text = guesses[numberOfGuesses - indexPath.row - 1]
+                cell.characterGender!.image = gender[numberOfGuesses - indexPath.row - 1]
+                cell.characterAffiliation!.image = affiliation[numberOfGuesses - indexPath.row - 1]
+                cell.characterMAffiliation!.image = magicAttribute[numberOfGuesses - indexPath.row - 1]
+                cell.characterDebutArch!.image = debutArch[numberOfGuesses - indexPath.row - 1]
+                cell.characterSpirit!.image = spirit[numberOfGuesses - indexPath.row - 1]
+                cell.genderText.text = genderTextArray[numberOfGuesses - indexPath.row - 1]
+                cell.magicAffiliationText.text = magicTextArray[numberOfGuesses - indexPath.row - 1]
+                cell.affiliationText.text = affiliationTextArray[numberOfGuesses - indexPath.row - 1]
+                cell.spiritText.text = spiritTextArray[numberOfGuesses - indexPath.row - 1]
+                cell.debutArchText.text = debutArchTextArray[numberOfGuesses - indexPath.row - 1]
+                cell.characterImage?.image = characterImagesArray[numberOfGuesses - indexPath.row - 1]
+            } else {
+                //            cell.characterText!.text = guesses[numberOfGuesses - indexPath.row - 1]
+                cell.characterGender!.image = gender[numberOfGuesses - indexPath.row - 1]
+                cell.characterAffiliation!.image = affiliation[numberOfGuesses - indexPath.row - 1]
+                cell.characterMAffiliation!.image = magicAttribute[numberOfGuesses - indexPath.row - 1]
+                cell.characterDebutArch!.image = debutArch[numberOfGuesses - indexPath.row - 1]
+                cell.characterSpirit!.image = spirit[numberOfGuesses - indexPath.row - 1]
+                cell.genderText.text = genderTextArray[numberOfGuesses - indexPath.row - 1]
+                cell.magicAffiliationText.text = magicTextArray[numberOfGuesses - indexPath.row - 1]
+                cell.affiliationText.text = affiliationTextArray[numberOfGuesses - indexPath.row - 1]
+                cell.spiritText.text = spiritTextArray[numberOfGuesses - indexPath.row - 1]
+                cell.debutArchText.text = debutArchTextArray[numberOfGuesses - indexPath.row - 1]
+                cell.characterImage?.image = characterImagesArray[numberOfGuesses - indexPath.row - 1]
+            }
+            return cell
         } else {
             let cell = UITableViewCell()
             cell.textLabel?.text = filteredData[indexPath.row]
@@ -282,7 +275,7 @@ extension ViewController: UITableViewDataSource{
             guessText.resignFirstResponder()
         }
         
-       
+        
         
     }
     
@@ -298,7 +291,7 @@ extension ViewController: UITableViewDataSource{
         })
         guessingTableView.reloadData()
     }
-   
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         guessingTableView.isHidden = false
     }
@@ -312,8 +305,8 @@ extension ViewController: UITableViewDataSource{
 }
 
 extension ViewController {
-
-
+    
+    
     func dismissKeyboard() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer( target:     self, action:    #selector(self.dismissKeyboardTouchOutside))
         tap.cancelsTouchesInView = false
