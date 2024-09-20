@@ -111,7 +111,7 @@
                         <outlet property="guessingTableView" destination="dU7-8t-MBI" id="FOd-zJ-oN1"/>
                         <outlet property="tableView" destination="YRU-TH-hMe" id="joT-6F-PfJ"/>
                         <outlet property="tryAgain" destination="cTu-ng-HkA" id="ANT-uL-Rrq"/>
-                        <segue destination="9Eq-45-HBK" kind="showDetail" identifier="CharacterCorrectViewController" id="uH5-Zi-Pth"/>
+                        <segue destination="9Eq-45-HBK" kind="presentation" identifier="CharacterCorrectViewController" modalPresentationStyle="fullScreen" id="uH5-Zi-Pth"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -123,7 +123,7 @@
             <objects>
                 <viewController storyboardIdentifier="CharacterCorrectViewController" title="CharacterCorrectViewController" id="9Eq-45-HBK" userLabel="CharacterCorrectViewController" customClass="CharacterCorrectViewController" customModule="Black_Clovedle" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BnU-rB-q7Y">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Todays Character was Mimosa!!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DtU-6L-eSu">
@@ -133,10 +133,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Alecdora" translatesAutoresizingMaskIntoConstraints="NO" id="ZIJ-L1-Bwk">
-                                <rect key="frame" x="76" y="177" width="243" height="263"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Countdown Until Next Character" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UcM-re-tft">
                                 <rect key="frame" x="16" y="484" width="377" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -158,6 +154,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Alecdora" translatesAutoresizingMaskIntoConstraints="NO" id="ZIJ-L1-Bwk">
+                                <rect key="frame" x="99" y="209" width="194" height="197"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8Dr-RD-eIx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -171,7 +171,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NSv-rb-3tu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1305" y="-1"/>
+            <point key="canvasLocation" x="1304.5801526717557" y="-1.4084507042253522"/>
         </scene>
     </scenes>
     <resources>

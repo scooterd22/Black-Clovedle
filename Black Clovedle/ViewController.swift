@@ -39,7 +39,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     var characterImagesArray = [UIImage]()
     var randomCharacter = Character.self
     //Calvin here I put an Array of Character Names but would love to be able to just use character info
-    let characterNames = ["Asta", "Yuno", "Noelle Silva", "Yami Sukehiro", "Mimosa Vermillion", "Luck Voltia", "Fuegoleon Vermillion", "Nozel Silva", "Charlotte Roselei", "William Vangeance", "Julius Novachrono", "Magna Swing", "Vanessa Enoteca", "Finral Roulacase", "Gauche Adlai", "Charmy Pappitson", "Gordon Agrippa", "Grey", "Secre Swallowtail", "Klaus Lunettes", "Hamon Caseus", "Alecdora Sandler", "Letoile Becquerel", "Langris Vaude", "Rhya the Disloyal", "Licht", "Vetto the Despair", "Fana The Hatred", "Sally", "Rades Spirito", "Valtos", "Rill Boismortier", "Kirsch Vermillion", "Zora Ideale", "Nacht Faust", "Zenon Zogratis", "Vanica Zogratis", "Dante Zogratis", "Liebe", "Mereoleona Vermillion", "Mars", "Ladros", "Sekke Bronzazza", "Solid Silva", "Nebra Silva", "Kaiser Granvorka", "Ralph Niaflem", "Damnatio Kira", "Morgen Faust", "Lily Aquaria", "Dorothy Unsworth"]
+    let characterNames = ["Asta", "Yuno", "Noelle Silva", "Yami Sukehiro", "Mimosa Vermillion", "Luck Voltia", "Fuegoleon Vermillion", "Nozel Silva", "Charlotte Roselei", "William Vangeance", "Julius Novachrono", "Magna Swing", "Vanessa Enoteca", "Finral Roulacase", "Gauche Adlai", "Charmy Pappitson", "Gordon Agrippa", "Grey", "Secre Swallowtail", "Klaus Lunettes", "Hamon Caseus", "Alecdora Sandler", "Letoile Becquerel", "Langris Vaude", "Rhya The Disloyal", "Licht", "Vetto The Despair", "Fana The Hatred", "Sally", "Rades Spirito", "Valtos", "Rill Boismortier", "Kirsch Vermillion", "Zora Ideale", "Dorothy Unsworth", "Leopold Vermillion", "Damnatio Kira", "Dante Zogratis", "Liebe", "Zagred", "Gadjah", "Gueldre", "Henry", "Jack the Ripper", "Kaiser Granvorka", "Kirsch Vermillion", "Klaus Lunettes", "Letoile Becquerel", "Lily Aquaria", "Loropechika", "Mars", "Mereoleona Vermillion", "Nacht Faust", "Nebra Silva", "Ralph Niaflem", "Sekke Bronzazza", "Sol Marron", "Solid Silva", "Undine", "Vanica", "Zenon Zogratis"]
     
     
     
@@ -189,8 +189,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         if segue.identifier == "CharacterCorrectViewController" {
             if let destinationVC = segue.destination as? CharacterCorrectViewController {
                 destinationVC.correctCharacter = correctName!
-                let astavar = "Asta"
-                print("this is the correct name here LOOK \(correctName!)")
                 destinationVC.correctImageSecondView = UIImage(named: "\(correctName!)")
             }
         }
