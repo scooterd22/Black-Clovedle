@@ -158,7 +158,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             if correctImage == characterObject?.imageName {
                 print("image is correct")
                 characterImagesArray.append(characterObject!.imageName!)
-                print(characterImagesArray.last)
             }else {
                 characterImagesArray.append(characterObject!.imageName!)
             }
@@ -190,7 +189,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         if segue.identifier == "CharacterCorrectViewController" {
             if let destinationVC = segue.destination as? CharacterCorrectViewController {
                 destinationVC.correctCharacter = correctName!
-                destinationVC.correctImageSecondView = UIImage(named: "\(correctImage)")
+                let astavar = "Asta"
+                print("this is the correct name here LOOK \(correctName!)")
+                destinationVC.correctImageSecondView = UIImage(named: "\(correctName!)")
             }
         }
     }
