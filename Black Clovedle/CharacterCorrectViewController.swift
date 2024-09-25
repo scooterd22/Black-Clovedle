@@ -46,12 +46,21 @@ class CharacterCorrectViewController: UIViewController {
         print(myMilliseconds)
         if myMinutes < 10 {
             countdown.text = String("\(myHours):0\(myMinutes)")
-        }else if myMilliseconds >= 0 {
-            countdown.text = String("\(myHours):\(myMinutes)")
+    //        }else if myMilliseconds >= 0 {
+    //            countdown.text = String("\(myHours):\(myMinutes)")
+    //            navigationController?.popViewController(animated: true)
+    //
+    //            dismiss(animated: true, completion: nil)
+    //            
+    //            timer.invalidate()
             
+            
+            // perform segue at midnight
         }else {
             countdown.text = String("\(myHours):\(myMinutes)")
         }
+        
+        
         
     }
     

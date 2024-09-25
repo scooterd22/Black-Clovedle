@@ -47,12 +47,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     let characterInfo = CharacterInfo()
     let characterUpdates = Guess()
     let greenCorrectImage = UIImage(named: "greenCorrect")
+    var correctArchNumber = 0
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        resetGame()
         dismissKeyboard()
-        getRandomCharacter()
         tableView.dataSource = self
         tableView.delegate = self
         guessingTableView.dataSource = self
@@ -143,7 +144,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
                 debutArchTextArray.append(characterObject!.debutArc)
             } else {
                 print ("not the same debut arch as the random character")
-                debutArch.append(UIImage(named: "redWrongThree")!)
+                if correctArchNumber < characterObject!.arcNumber{
+                    debutArch.append(UIImage(named: "redArrowDown")!)
+                } else{
+                    debutArch.append(UIImage(named: "redArrowUp")!)
+                }
                 debutArchTextArray.append(characterObject!.debutArc)
             }
             if correctSpirit == characterObject?.spirit {
@@ -167,7 +172,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     
     func getRandomCharacter() {
         if let randomCharacter = characterInfo.characters.randomElement() {
-            print("Random Character: \(randomCharacter.name), Gender: \(randomCharacter.gender) Affiliation: \(randomCharacter.affiliation), Magic Attribute: \(randomCharacter.magicAttribute), Debut Arch: \(randomCharacter.debutArc)")
+            print("Random Character: \(randomCharacter.name), Gender: \(randomCharacter.gender) Affiliation: \(randomCharacter.affiliation), Magic Attribute: \(randomCharacter.magicAttribute), Debut Arch: \(randomCharacter.debutArc), Arch Number: \(randomCharacter.debutArc)")
             correctName = randomCharacter.name
             correctGender = randomCharacter.gender
             correctAffiliation = randomCharacter.affiliation
@@ -175,6 +180,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             correctDebutArch = randomCharacter.debutArc
             correctSpirit = randomCharacter.spirit
             correctImage = randomCharacter.imageName
+            correctArchNumber = randomCharacter.arcNumber
 //            print("this is the right thing \(correctImage)")
         } else {
             print("error")
