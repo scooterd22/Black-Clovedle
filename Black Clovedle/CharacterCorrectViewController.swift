@@ -16,7 +16,13 @@ class CharacterCorrectViewController: UIViewController {
     @IBOutlet weak var todaysCharacter: UILabel!
     @IBOutlet weak var todaysCharacterImage: UIImageView?
     @IBOutlet weak var countdown: UILabel!
+    @IBOutlet weak var totalCorrect: UILabel!
     var timer = Timer()
+    var guessingScreen = ViewController()
+    var allTimeCorrect = UserDefaults.standard.integer(forKey: "All-Time Correct")
+    var lastDatePlayed = UserDefaults.standard.set(Date(), forKey: "lastDatePlayed")
+    var currentDatePlayed = UserDefaults.standard.set(Date(), forKey: "currentDatePlayed")
+    
     
 
     override func viewDidLoad() {
@@ -25,6 +31,20 @@ class CharacterCorrectViewController: UIViewController {
         todaysCharacter.text = "Today's character was \(correctCharacter)"
         todaysCharacterImage?.image = correctImageSecondView
         print("this is todays character \(todaysCharacterImage)")
+        updateTotalCorrect()
+        
+        UserDefaults.standard.set(Date(), forKey: "lastDatePlayed")
+        let date = UserDefaults.standard.object(forKey: "lastDatePlayed") as! Date
+        let df = DateFormatter()
+        df.dateFormat = "dd/MM/yyyy"
+        print(df.string(from: date))
+    }
+    
+    func updateTotalCorrect() {
+        allTimeCorrect += 1
+        totalCorrect.text = "All-time correct: \(allTimeCorrect)"
+        UserDefaults.standard.set(allTimeCorrect, forKey: "All-Time Correct")
+//        print("the daily character was guessed: \(mainView.dailyCharacterGuessed)")
     }
     
     func startTimer() {
@@ -39,25 +59,33 @@ class CharacterCorrectViewController: UIViewController {
     
     
     
+    
     func countdownTimerUpdate() {
         var myMilliseconds = Int((Date().millisecondsUntilTheNextDay)/60000)
         var myHours = Int((Date().millisecondsUntilTheNextDay)/60000/60)
         var myMinutes = (myMilliseconds % 60)
-        print(myMilliseconds)
-        if myMinutes < 10 {
+        print(myMinutes)
+        if myMinutes < 10{ // its not midnight yet{
             countdown.text = String("\(myHours):0\(myMinutes)")
-    //        }else if myMilliseconds >= 0 {
-    //            countdown.text = String("\(myHours):\(myMinutes)")
-    //            navigationController?.popViewController(animated: true)
-    //
-    //            dismiss(animated: true, completion: nil)
-    //            
-    //            timer.invalidate()
-            
-            
-            // perform segue at midnight
+            guessingScreen.dailyGamePlayed = true
+            UserDefaults.standard.set(true, forKey: "dailyGamePlayed")
+            print(guessingScreen.dailyGamePlayed)
+            }else if myMilliseconds <= 217 { // its past midnight
+                countdown.text = String("\(myHours):\(myMinutes)")
+                dismiss(animated: true, completion: nil)
+                guessingScreen.dailyGamePlayed = false
+                UserDefaults.standard.setValue(false, forKey: "dailyGamePlayed")
+                print(guessingScreen.dailyGamePlayed)
+                timer.invalidate()
+
         }else {
             countdown.text = String("\(myHours):\(myMinutes)")
+        }
+        
+        if guessingScreen.dailyGamePlayed == false {
+            
+        }else {
+            
         }
         
         

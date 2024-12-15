@@ -38,7 +38,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     var debutArchTextArray = [String]()
     var characterImagesArray = [UIImage]()
     var randomCharacter = Character.self
-    //Calvin here I put an Array of Character Names but would love to be able to just use character info
     let characterNames = ["Asta", "Yuno", "Noelle Silva", "Yami Sukehiro", "Mimosa Vermillion", "Luck Voltia", "Fuegoleon Vermillion", "Nozel Silva", "Charlotte Roselei", "William Vangeance", "Julius Novachrono", "Magna Swing", "Vanessa Enoteca", "Finral Roulacase", "Gauche Adlai", "Charmy Pappitson", "Gordon Agrippa", "Grey", "Secre Swallowtail", "Klaus Lunettes", "Hamon Caseus", "Alecdora Sandler", "Letoile Becquerel", "Langris Vaude", "Rhya The Disloyal", "Licht", "Vetto The Despair", "Fana The Hatred", "Sally", "Rades Spirito", "Valtos", "Rill Boismortier", "Kirsch Vermillion", "Zora Ideale", "Dorothy Unsworth", "Leopold Vermillion", "Damnatio Kira", "Dante Zogratis", "Liebe", "Zagred", "Gadjah", "Gueldre", "Henry", "Jack the Ripper", "Kaiser Granvorka", "Kirsch Vermillion", "Klaus Lunettes", "Letoile Becquerel", "Lily Aquaria", "Loropechika", "Mars", "Mereoleona Vermillion", "Nacht Faust", "Nebra Silva", "Ralph Niaflem", "Sekke Bronzazza", "Sol Marron", "Solid Silva", "Undine", "Vanica", "Zenon Zogratis"]
     
     
@@ -48,6 +47,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     let characterUpdates = Guess()
     let greenCorrectImage = UIImage(named: "greenCorrect")
     var correctArchNumber = 0
+    var dailyGamePlayed = UserDefaults.standard.bool(forKey: "dailyGamePlayed")
     
     
     override func viewDidLoad() {
@@ -63,6 +63,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         tableView.register(UINib(nibName: "Guess", bundle: nil), forCellReuseIdentifier: "GuessCell")
         guessingTableView.isHidden = true
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        resetGame()
+        dailyGamePlayed = false
+        UserDefaults.standard.set(false, forKey: "dailyGamePlayed")
     }
     
     
@@ -194,6 +200,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CharacterCorrectViewController" {
             if let destinationVC = segue.destination as? CharacterCorrectViewController {
+                destinationVC.modalPresentationStyle = .fullScreen
                 destinationVC.correctCharacter = correctName!
                 destinationVC.correctImageSecondView = UIImage(named: "\(correctName!)")
             }
@@ -202,8 +209,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     
     
     func resetGame(){
-        guessText.text = ""
         getRandomCharacter()
+        guessText.text = ""
         tryAgain.text = "Guess today's Black Clover Character!"
         numberOfGuesses = 0
         guesses = []
@@ -236,7 +243,7 @@ extension ViewController: UITableViewDataSource{
         if tableView == self.tableView{
             let cell = tableView.dequeueReusableCell(withIdentifier: "GuessCell", for: indexPath) as! Guess
             if guesses.count > 0 {
-                //            cell.characterText!.text = guesses[numberOfGuesses - indexPath.row - 1]
+                // the numberofguesses - indexpath.row - 1 get you the reverse order inputted 
                 cell.characterGender!.image = gender[numberOfGuesses - indexPath.row - 1]
                 cell.characterAffiliation!.image = affiliation[numberOfGuesses - indexPath.row - 1]
                 cell.characterMAffiliation!.image = magicAttribute[numberOfGuesses - indexPath.row - 1]
