@@ -48,10 +48,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     let greenCorrectImage = UIImage(named: "greenCorrect")
     var correctArchNumber = 0
     var dailyGamePlayed = UserDefaults.standard.bool(forKey: "dailyGamePlayed")
+    var currentDate = "currentDate"
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("ths viewdidload ran")
+    
         resetGame()
         dismissKeyboard()
         tableView.dataSource = self
@@ -69,6 +72,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         resetGame()
         dailyGamePlayed = false
         UserDefaults.standard.set(false, forKey: "dailyGamePlayed")
+        let df = DateFormatter()
+        df.dateFormat = "MM/dd"
+        let currentDate = df.string(from: Date())
+        print("this is the current date in the guessing view  \(currentDate)")
+        print(currentDate)
+        if isKeyPresentInUserDefaults(key: "lastDatePlayed") == true {
+            if UserDefaults.standard.object(forKey: "lastDatePlayed") as! String == currentDate {
+                correctName = UserDefaults.standard.string(forKey: "winningCharacter")
+                performSegue(withIdentifier: "CharacterCorrectViewController", sender: nil)
+                
+            }
+        } else{
+            
+        }
+    }
+    
+    func isKeyPresentInUserDefaults(key: String) -> Bool {
+        return UserDefaults.standard.object(forKey: key) != nil
     }
     
     
@@ -206,6 +227,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             }
         }
     }
+    
     
     
     func resetGame(){
