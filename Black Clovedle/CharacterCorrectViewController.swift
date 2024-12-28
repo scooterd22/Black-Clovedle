@@ -23,35 +23,34 @@ class CharacterCorrectViewController: UIViewController {
     var currentDate = "currentDate"
     let df = DateFormatter()
     
-//    var lastDatePlayed = UserDefaults.standard.set(Date(), forKey: "lastDatePlayed")
-//    var currentDatePlayed = UserDefaults.standard.set(Date(), forKey: "currentDatePlayed")
+ 
     
 
     override func viewDidLoad() {
         df.dateFormat = "MM/dd"
-        let currentDate = df.string(from: Date())
+        currentDate = df.string(from: Date())
         print("this is the current date \(currentDate)")
+        updateTotalCorrect()
         countdownTimerUpdate()
         startTimer()
         todaysCharacter.text = "Today's character was \(correctCharacter)"
         todaysCharacterImage?.image = correctImageSecondView
-        print("this is todays character \(todaysCharacterImage)")
-        updateTotalCorrect()
+        print("this is todays character \(String(describing: todaysCharacterImage))")
         UserDefaults.standard.set(correctCharacter ,forKey: "winningCharacter")
         print("test")
-//        UserDefaults.standard.set(Date(), forKey: "lastDatePlayed")
-//        let date = UserDefaults.standard.object(forKey: "lastDatePlayed") as! Date
-//        let df = DateFormatter()
-//        df.dateFormat = "dd/MM/yyyy"
-//        print(df.string(from: date))
+
     }
     
     func updateTotalCorrect() {
-        allTimeCorrect += 1
-        totalCorrect.text = "All-time correct: \(allTimeCorrect)"
-        UserDefaults.standard.set(allTimeCorrect, forKey: "All-Time Correct")
-//        print("the daily character was guessed: \(mainView.dailyCharacterGuessed)")
-    }
+        let lastUpdatedDate = UserDefaults.standard.string(forKey: "lastUpdatedDate") ?? ""
+            if currentDate != lastUpdatedDate {
+                // Increment all-time correct only if today's date is new
+                allTimeCorrect += 1
+                UserDefaults.standard.set(allTimeCorrect, forKey: "All-Time Correct")
+                UserDefaults.standard.set(currentDate, forKey: "lastUpdatedDate")
+            }
+            updateTotalCorrectLabel()
+        }
     
     func startTimer() {
         timer.invalidate()
@@ -63,43 +62,36 @@ class CharacterCorrectViewController: UIViewController {
         
     }
     
+    func updateTotalCorrectLabel() {
+        totalCorrect.text = "All-time correct: \(allTimeCorrect)"
+    }
     
     
     
     func countdownTimerUpdate() {
         
-        var myMilliseconds = Int((Date().millisecondsUntilTheNextDay)/60000)
-        var myHours = Int((Date().millisecondsUntilTheNextDay)/60000/60)
-        var myMinutes = (myMilliseconds % 60)
-        print(myMinutes)
-        if myMinutes > 0{ // its not midnight yet{
-            countdown.text = String("\(myHours):0\(myMinutes)")
-            guessingScreen.dailyGamePlayed = true
-            UserDefaults.standard.set(true, forKey: "dailyGamePlayed")
-            print(guessingScreen.dailyGamePlayed)
-            
-            df.dateFormat = "MM/dd"
-            let lastDatePlayed = df.string(from: Date())
-            print("this was the last date they played \(lastDatePlayed)")
-            UserDefaults.standard.set(lastDatePlayed, forKey: "lastDatePlayed")
-            print("stop")
-            
-            }else if myMilliseconds <= 0 { // its past midnight
-                countdown.text = String("\(myHours):\(myMinutes)")
-                dismiss(animated: true, completion: nil)
-                guessingScreen.dailyGamePlayed = false
-                UserDefaults.standard.setValue(false, forKey: "dailyGamePlayed")
-                print(guessingScreen.dailyGamePlayed)
-                timer.invalidate()
+        let myMilliseconds = Int((Date().millisecondsUntilTheNextDay)/60000)
+        let myHours = Int((Date().millisecondsUntilTheNextDay)/60000/60)
+        let myMinutes = (myMilliseconds % 60)
+        let mySeconds = (Int(Date().millisecondsUntilTheNextDay) / 1000) % 60
+        if myHours <= 0 { // its past midnight
+            countdown.text = String("\(myHours):\(myMinutes)")
+            dismiss(animated: true, completion: nil)
+            timer.invalidate()
+        } else if myMinutes < 10 && mySeconds < 10 {
+            countdown.text = String("\(myHours):0\(myMinutes):0\(mySeconds)")
+        } else if mySeconds < 10 {
+            countdown.text = String("\(myHours):\(myMinutes):0\(mySeconds)")
+        } else if myMinutes < 10 {
+            countdown.text = String("\(myHours):0\(myMinutes):\(mySeconds)")
+        }else if myMinutes > 0{ // its not midnight yet{
+                countdown.text = String("\(myHours):\(myMinutes):\(mySeconds)")
+                df.dateFormat = "MM/dd"
+                let lastDatePlayed = df.string(from: Date())
+                UserDefaults.standard.set(lastDatePlayed, forKey: "lastDatePlayed")
 
         }else {
             countdown.text = String("\(myHours):\(myMinutes)")
-        }
-        
-        if guessingScreen.dailyGamePlayed == false {
-            
-        }else {
-            
         }
         
         

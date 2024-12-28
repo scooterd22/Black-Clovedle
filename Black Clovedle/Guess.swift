@@ -40,7 +40,7 @@ class Guess: UITableViewCell {
     func changeGenderToGreenCorrect() {
         characterGender?.image = UIImage(named: "")
         print("did this run?")
-        print(characterGender?.image)
+        print(characterGender?.image!)
     }
     
     func changeGenderToRedIncorrect() {

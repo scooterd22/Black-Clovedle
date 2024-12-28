@@ -72,6 +72,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         resetGame()
         dailyGamePlayed = false
         UserDefaults.standard.set(false, forKey: "dailyGamePlayed")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         let df = DateFormatter()
         df.dateFormat = "MM/dd"
         let currentDate = df.string(from: Date())
@@ -88,9 +91,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         }
     }
     
+    
+    
     func isKeyPresentInUserDefaults(key: String) -> Bool {
         return UserDefaults.standard.object(forKey: key) != nil
     }
+        
+    
     
     
     @IBAction func submitPressed(_ sender: Any) {
