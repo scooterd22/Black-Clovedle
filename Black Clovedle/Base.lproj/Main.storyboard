@@ -139,6 +139,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="buttonreset" destination="0Xt-5f-ZGa" id="068-aN-shL"/>
                         <outlet property="guessText" destination="lfg-lg-7mF" id="KbM-4J-aNF"/>
                         <outlet property="guessingTableView" destination="dU7-8t-MBI" id="FOd-zJ-oN1"/>
                         <outlet property="tableView" destination="YRU-TH-hMe" id="joT-6F-PfJ"/>

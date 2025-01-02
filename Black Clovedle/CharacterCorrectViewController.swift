@@ -27,19 +27,31 @@ class CharacterCorrectViewController: UIViewController {
     
 
     override func viewDidLoad() {
-        df.dateFormat = "MM/dd"
-        currentDate = df.string(from: Date())
+        updateCurrentDate()
         print("this is the current date \(currentDate)")
+        // call?
         updateTotalCorrect()
-        countdownTimerUpdate()
+        countdownTimerUpdate() // setting initial label before timer updates
         startTimer()
         todaysCharacter.text = "Today's character was \(correctCharacter)"
         todaysCharacterImage?.image = correctImageSecondView
-        print("this is todays character \(String(describing: todaysCharacterImage))")
         UserDefaults.standard.set(correctCharacter ,forKey: "winningCharacter")
-        print("test")
 
     }
+    
+//    
+//    override func viewWillAppear(_ animated: Bool) {
+//        updateCurrentDate()
+//        print("this is the current date \(currentDate)")
+//        // call?
+//        updateTotalCorrect()
+//        countdownTimerUpdate() // setting initial label before timer updates
+//        startTimer()
+//        todaysCharacter.text = "Today's character was \(correctCharacter)"
+//        todaysCharacterImage?.image = correctImageSecondView
+//        UserDefaults.standard.set(correctCharacter ,forKey: "winningCharacter")
+//    }
+//    
     
     func updateTotalCorrect() {
         let lastUpdatedDate = UserDefaults.standard.string(forKey: "lastUpdatedDate") ?? ""
@@ -58,13 +70,37 @@ class CharacterCorrectViewController: UIViewController {
     }
     
     @objc func updateTimer() {
-        countdownTimerUpdate()
-        
+        updateCurrentDate()
+        if currentDate != UserDefaults.standard.string(forKey: "lastUpdatedDate") {
+            dismiss(animated: true, completion: nil)
+            timer.invalidate()
+        }else {
+            countdownTimerUpdate()
+        }
     }
+    
     
     func updateTotalCorrectLabel() {
         totalCorrect.text = "All-time correct: \(allTimeCorrect)"
     }
+    
+    func checkForLockout() {
+        if currentDate != UserDefaults.standard.string(forKey: "lastUpdatedDate") {
+            dismiss(animated: true, completion: nil)
+        }
+        
+        
+        
+    }
+    
+    func updateCurrentDate() {
+        df.dateFormat = "MM/dd"
+        currentDate = "01/02"
+        /*df.string(from: Date())*/
+        print("date is \(currentDate)")
+    }
+    
+    
     
     
     
@@ -76,8 +112,8 @@ class CharacterCorrectViewController: UIViewController {
         let mySeconds = (Int(Date().millisecondsUntilTheNextDay) / 1000) % 60
         if myHours <= 0 { // its past midnight
             countdown.text = String("\(myHours):\(myMinutes)")
-            dismiss(animated: true, completion: nil)
-            timer.invalidate()
+//            dismiss(animated: true, completion: nil)
+//            timer.invalidate()
         } else if myMinutes < 10 && mySeconds < 10 {
             countdown.text = String("\(myHours):0\(myMinutes):0\(mySeconds)")
         } else if mySeconds < 10 {
@@ -86,20 +122,20 @@ class CharacterCorrectViewController: UIViewController {
             countdown.text = String("\(myHours):0\(myMinutes):\(mySeconds)")
         }else if myMinutes > 0{ // its not midnight yet{
                 countdown.text = String("\(myHours):\(myMinutes):\(mySeconds)")
-                df.dateFormat = "MM/dd"
-                let lastDatePlayed = df.string(from: Date())
-                UserDefaults.standard.set(lastDatePlayed, forKey: "lastDatePlayed")
+//                df.dateFormat = "MM/dd"
+//                let lastDatePlayed = df.string(from: Date())
+//                UserDefaults.standard.set(lastDatePlayed, forKey: "lastDatePlayed")
 
         }else {
             countdown.text = String("\(myHours):\(myMinutes)")
         }
-        
-        
-        
     }
-    
-    
+   
 }
+
+
+
+
 
 extension Date {
     var startOfNextDay: Date {

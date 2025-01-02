@@ -16,6 +16,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     @IBOutlet weak var tryAgain: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var guessText: UITextField!
+    @IBOutlet weak var buttonreset: UIButton!
     var correctName: String?
     var correctGender: String?
     var correctAffiliation: String?
@@ -52,9 +53,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     
     
     override func viewDidLoad() {
+        let df = DateFormatter()
+        df.dateFormat = "MM/dd"
+        currentDate = df.string(from: Date())
         super.viewDidLoad()
+        buttonreset.setTitle("viewdidload", for: .normal)
         print("ths viewdidload ran")
-    
         resetGame()
         dismissKeyboard()
         tableView.dataSource = self
@@ -65,19 +69,36 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         guessText.addTarget(self, action: #selector(TextfieldDidChange(_:)), for: .editingChanged)
         tableView.register(UINib(nibName: "Guess", bundle: nil), forCellReuseIdentifier: "GuessCell")
         guessingTableView.isHidden = true
+        
+        if currentDate == UserDefaults.standard.string(forKey: "lastUpdatedDate") {
+            buttonreset.tintColor = UIColor.purple
+            correctName = UserDefaults.standard.string(forKey: "winningCharacter")
+            performSegue(withIdentifier: "CharacterCorrectViewController", sender: nil)
+            
+            
+        }
+        
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         resetGame()
-        dailyGamePlayed = false
+        buttonreset.setTitle("viewwillappear", for: .normal)
         UserDefaults.standard.set(false, forKey: "dailyGamePlayed")
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let df = DateFormatter()
-        df.dateFormat = "MM/dd"
-        let currentDate = df.string(from: Date())
+        if currentDate == UserDefaults.standard.string(forKey: "lastUpdatedDate") {
+            buttonreset.backgroundColor = UIColor.purple
+            correctName = UserDefaults.standard.string(forKey: "winningCharacter")
+            performSegue(withIdentifier: "CharacterCorrectViewController", sender: nil)
+            
+            
+        }
+        
+        
+        
+        
         print("this is the current date in the guessing view  \(currentDate)")
         print(currentDate)
         if isKeyPresentInUserDefaults(key: "lastDatePlayed") == true {
@@ -90,6 +111,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             
         }
     }
+    
+
+    
     
     
     
@@ -112,9 +136,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             self.tableView.reloadData()
             guessText.text = ""
             performSegue(withIdentifier: "CharacterCorrectViewController", sender: nil)
-            //            presentViewController(CharacterCorrectViewController, animated: true, completion: nil)
-            //
-            //wait 1 second timer then transition to other screen
+            
         } else if guesses.contains(guessedCharacter) {
             tryAgain.text = "You've already guessed this character"
             guessText.text = ""
@@ -241,6 +263,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         getRandomCharacter()
         guessText.text = ""
         tryAgain.text = "Guess today's Black Clover Character!"
+//        tryAgain.text = correctName
         numberOfGuesses = 0
         guesses = []
         gender = [UIImage]()
