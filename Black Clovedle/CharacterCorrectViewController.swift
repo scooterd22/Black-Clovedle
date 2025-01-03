@@ -14,6 +14,7 @@ class CharacterCorrectViewController: UIViewController {
     var correctCharacter = ""
     var correctImageSecondView: UIImage?
     @IBOutlet weak var todaysCharacter: UILabel!
+    @IBOutlet weak var testingLabel: UILabel!
     @IBOutlet weak var todaysCharacterImage: UIImageView?
     @IBOutlet weak var countdown: UILabel!
     @IBOutlet weak var totalCorrect: UILabel!
@@ -28,8 +29,6 @@ class CharacterCorrectViewController: UIViewController {
 
     override func viewDidLoad() {
         updateCurrentDate()
-        print("this is the current date \(currentDate)")
-        // call?
         updateTotalCorrect()
         countdownTimerUpdate() // setting initial label before timer updates
         startTimer()
@@ -56,10 +55,9 @@ class CharacterCorrectViewController: UIViewController {
     func updateTotalCorrect() {
         let lastUpdatedDate = UserDefaults.standard.string(forKey: "lastUpdatedDate") ?? ""
             if currentDate != lastUpdatedDate {
-                // Increment all-time correct only if today's date is new
-                allTimeCorrect += 1
-                UserDefaults.standard.set(allTimeCorrect, forKey: "All-Time Correct")
-                UserDefaults.standard.set(currentDate, forKey: "lastUpdatedDate")
+                testingLabel.text = "currentdate != lastupdateddate"
+                dismiss(animated: true, completion: nil)
+
             }
             updateTotalCorrectLabel()
         }
@@ -95,9 +93,8 @@ class CharacterCorrectViewController: UIViewController {
     
     func updateCurrentDate() {
         df.dateFormat = "MM/dd"
-        currentDate = "01/02"
-        /*df.string(from: Date())*/
-        print("date is \(currentDate)")
+        currentDate = df.string(from: Date())
+        print("1")
     }
     
     
@@ -111,7 +108,7 @@ class CharacterCorrectViewController: UIViewController {
         let myMinutes = (myMilliseconds % 60)
         let mySeconds = (Int(Date().millisecondsUntilTheNextDay) / 1000) % 60
         if myHours <= 0 { // its past midnight
-            countdown.text = String("\(myHours):\(myMinutes)")
+            countdown.text = String("\(myHours):\(myMinutes):\(mySeconds)")
 //            dismiss(animated: true, completion: nil)
 //            timer.invalidate()
         } else if myMinutes < 10 && mySeconds < 10 {
@@ -127,7 +124,7 @@ class CharacterCorrectViewController: UIViewController {
 //                UserDefaults.standard.set(lastDatePlayed, forKey: "lastDatePlayed")
 
         }else {
-            countdown.text = String("\(myHours):\(myMinutes)")
+            countdown.text = String("\(myHours):\(myMinutes):\(mySeconds)")
         }
     }
    

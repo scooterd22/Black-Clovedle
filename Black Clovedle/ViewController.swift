@@ -50,9 +50,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     var correctArchNumber = 0
     var dailyGamePlayed = UserDefaults.standard.bool(forKey: "dailyGamePlayed")
     var currentDate = "currentDate"
+    var allTimeCorrect = UserDefaults.standard.integer(forKey: "All-Time Correct")
+//    let characterCorrectController = CharacterCorrectViewController()
     
     
     override func viewDidLoad() {
+//        characterCorrectController.testingLabel.text = "viewdidload of first screen ran"
         let df = DateFormatter()
         df.dateFormat = "MM/dd"
         currentDate = df.string(from: Date())
@@ -81,13 +84,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        resetGame()
-        buttonreset.setTitle("viewwillappear", for: .normal)
-        UserDefaults.standard.set(false, forKey: "dailyGamePlayed")
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        resetGame()
+////        characterCorrectController.testingLabel.text = "viewwillappear of first screen ran"
+//        buttonreset.setTitle("viewwillappear", for: .normal)
+//        UserDefaults.standard.set(false, forKey: "dailyGamePlayed")
+//    }
     
     override func viewDidAppear(_ animated: Bool) {
+//        characterCorrectController.testingLabel.text = "viewdidappear of first screen ran"
         if currentDate == UserDefaults.standard.string(forKey: "lastUpdatedDate") {
             buttonreset.backgroundColor = UIColor.purple
             correctName = UserDefaults.standard.string(forKey: "winningCharacter")
@@ -95,12 +100,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             
             
         }
-        
-        
-        
-        
-        print("this is the current date in the guessing view  \(currentDate)")
-        print(currentDate)
+//
+//        print("this is the current date in the guessing view  \(currentDate)")
+//        print(currentDate)
         if isKeyPresentInUserDefaults(key: "lastDatePlayed") == true {
             if UserDefaults.standard.object(forKey: "lastDatePlayed") as! String == currentDate {
                 correctName = UserDefaults.standard.string(forKey: "winningCharacter")
@@ -135,7 +137,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             numberOfGuesses += 1
             self.tableView.reloadData()
             guessText.text = ""
-            performSegue(withIdentifier: "CharacterCorrectViewController", sender: nil)
             
         } else if guesses.contains(guessedCharacter) {
             tryAgain.text = "You've already guessed this character"
@@ -219,6 +220,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             if correctImage == characterObject?.imageName {
                 print("image is correct")
                 characterImagesArray.append(characterObject!.imageName!)
+                allTimeCorrect += 1
+                UserDefaults.standard.set(allTimeCorrect, forKey: "All-Time Correct")
+                UserDefaults.standard.set(currentDate, forKey: "lastUpdatedDate")
+                performSegue(withIdentifier: "CharacterCorrectViewController", sender: nil)
             }else {
                 characterImagesArray.append(characterObject!.imageName!)
             }
