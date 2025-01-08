@@ -55,6 +55,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     
     
     override func viewDidLoad() {
+        resetGame()
 //        characterCorrectController.testingLabel.text = "viewdidload of first screen ran"
         let df = DateFormatter()
         df.dateFormat = "MM/dd"
@@ -92,7 +93,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
 //    }
     
     override func viewDidAppear(_ animated: Bool) {
-//        characterCorrectController.testingLabel.text = "viewdidappear of first screen ran"
+            let df = DateFormatter()
+            df.dateFormat = "MM/dd"
+            currentDate = df.string(from: Date())
         if currentDate == UserDefaults.standard.string(forKey: "lastUpdatedDate") {
             buttonreset.backgroundColor = UIColor.purple
             correctName = UserDefaults.standard.string(forKey: "winningCharacter")
