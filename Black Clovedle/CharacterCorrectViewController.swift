@@ -23,6 +23,7 @@ class CharacterCorrectViewController: UIViewController {
     var allTimeCorrect = UserDefaults.standard.integer(forKey: "All-Time Correct")
     var currentDate = "currentDate"
     let df = DateFormatter()
+    var isDismissedForMidnight = false
     
  
     
@@ -62,6 +63,10 @@ class CharacterCorrectViewController: UIViewController {
             updateTotalCorrectLabel()
         }
     
+    
+
+
+    
     func startTimer() {
         timer.invalidate()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
@@ -69,9 +74,10 @@ class CharacterCorrectViewController: UIViewController {
     
     @objc func updateTimer() {
         updateCurrentDate()
-        if currentDate != UserDefaults.standard.string(forKey: "lastUpdatedDate") {
-            dismiss(animated: true, completion: nil)
-            timer.invalidate()
+        if !isDismissedForMidnight && currentDate != UserDefaults.standard.string(forKey: "lastUpdatedDate") {
+            isDismissedForMidnight = true // Set the flag
+            timer.invalidate() // Stop the timer
+            dismiss(animated: true, completion: nil) // Dismiss the view
         }else {
             countdownTimerUpdate()
         }

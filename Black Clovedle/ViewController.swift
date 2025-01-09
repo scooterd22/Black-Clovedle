@@ -94,15 +94,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     
     override func viewDidAppear(_ animated: Bool) {
             let df = DateFormatter()
-            df.dateFormat = "MM/dd"
+            df.dateFormat = "MM/dd  "
             currentDate = df.string(from: Date())
-        if currentDate == UserDefaults.standard.string(forKey: "lastUpdatedDate") {
-            buttonreset.backgroundColor = UIColor.purple
-            correctName = UserDefaults.standard.string(forKey: "winningCharacter")
-            performSegue(withIdentifier: "CharacterCorrectViewController", sender: nil)
-            
-            
-        }
+            if currentDate != UserDefaults.standard.string(forKey: "lastUpdatedDate") {
+                resetGame()
+            } else if correctName == UserDefaults.standard.string(forKey: "winningCharacter") {
+                // If the correct character has already been guessed
+                performSegue(withIdentifier: "CharacterCorrectViewController", sender: nil)
+            }
 //
 //        print("this is the current date in the guessing view  \(currentDate)")
 //        print(currentDate)
