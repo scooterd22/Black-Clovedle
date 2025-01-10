@@ -60,7 +60,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         df.dateFormat = "MM/dd"
         currentDate = df.string(from: Date())
         super.viewDidLoad()
-        buttonreset.setTitle("viewdidload", for: .normal)
         print("ths viewdidload ran")
 //        resetGame()
         dismissKeyboard()
@@ -74,7 +73,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         guessingTableView.isHidden = true
         
         if currentDate == UserDefaults.standard.string(forKey: "lastUpdatedDate") {
-            buttonreset.tintColor = UIColor.purple
             correctName = UserDefaults.standard.string(forKey: "winningCharacter")
             performSegue(withIdentifier: "CharacterCorrectViewController", sender: nil)
             
@@ -96,7 +94,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         resetGame()
 //        characterCorrectController.testingLabel.text = "viewdidappear of first screen ran"
         if currentDate == UserDefaults.standard.string(forKey: "lastUpdatedDate") {
-            buttonreset.backgroundColor = UIColor.purple
             correctName = UserDefaults.standard.string(forKey: "winningCharacter")
             performSegue(withIdentifier: "CharacterCorrectViewController", sender: nil)
         }
