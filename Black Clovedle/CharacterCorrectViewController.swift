@@ -58,7 +58,6 @@ class CharacterCorrectViewController: UIViewController {
             if currentDate != lastUpdatedDate {
                 testingLabel.text = "currentdate != lastupdateddate"
                 dismiss(animated: true, completion: nil)
-
             }
             updateTotalCorrectLabel()
         }
@@ -74,10 +73,9 @@ class CharacterCorrectViewController: UIViewController {
     
     @objc func updateTimer() {
         updateCurrentDate()
-        if !isDismissedForMidnight && currentDate != UserDefaults.standard.string(forKey: "lastUpdatedDate") {
-            isDismissedForMidnight = true // Set the flag
-            timer.invalidate() // Stop the timer
-            dismiss(animated: true, completion: nil) // Dismiss the view
+        if currentDate != UserDefaults.standard.string(forKey: "lastUpdatedDate") {
+            dismiss(animated: true, completion: nil)
+            timer.invalidate()
         }else {
             countdownTimerUpdate()
         }

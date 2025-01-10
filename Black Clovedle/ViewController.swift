@@ -55,7 +55,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     
     
     override func viewDidLoad() {
-        resetGame()
 //        characterCorrectController.testingLabel.text = "viewdidload of first screen ran"
         let df = DateFormatter()
         df.dateFormat = "MM/dd"
@@ -63,7 +62,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         super.viewDidLoad()
         buttonreset.setTitle("viewdidload", for: .normal)
         print("ths viewdidload ran")
-        resetGame()
+//        resetGame()
         dismissKeyboard()
         tableView.dataSource = self
         tableView.delegate = self
@@ -93,15 +92,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
 //    }
     
     override func viewDidAppear(_ animated: Bool) {
-            let df = DateFormatter()
-            df.dateFormat = "MM/dd  "
-            currentDate = df.string(from: Date())
-            if currentDate != UserDefaults.standard.string(forKey: "lastUpdatedDate") {
-                resetGame()
-            } else if correctName == UserDefaults.standard.string(forKey: "winningCharacter") {
-                // If the correct character has already been guessed
-                performSegue(withIdentifier: "CharacterCorrectViewController", sender: nil)
-            }
+        updateCurrentDate()
+        resetGame()
+//        characterCorrectController.testingLabel.text = "viewdidappear of first screen ran"
+        if currentDate == UserDefaults.standard.string(forKey: "lastUpdatedDate") {
+            buttonreset.backgroundColor = UIColor.purple
+            correctName = UserDefaults.standard.string(forKey: "winningCharacter")
+            performSegue(withIdentifier: "CharacterCorrectViewController", sender: nil)
+        }
 //
 //        print("this is the current date in the guessing view  \(currentDate)")
 //        print(currentDate)
@@ -233,6 +231,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         }
     }
     
+    
+    
+    func updateCurrentDate() {
+        let df = DateFormatter()
+        df.dateFormat = "MM/dd"
+        currentDate = df.string(from: Date())
+    }
+
+    
     func getRandomCharacter() {
         if let randomCharacter = characterInfo.characters.randomElement() {
             print("Random Character: \(randomCharacter.name), Gender: \(randomCharacter.gender) Affiliation: \(randomCharacter.affiliation), Magic Attribute: \(randomCharacter.magicAttribute), Debut Arch: \(randomCharacter.debutArc), Arch Number: \(randomCharacter.debutArc)")
@@ -287,6 +294,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         self.tableView.reloadData()
     }
 }
+
+
 
 extension ViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
