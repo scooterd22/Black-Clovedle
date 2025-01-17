@@ -40,7 +40,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     var characterImagesArray = [UIImage]()
     var randomCharacter = Character.self
     let characterNames = ["Asta", "Yuno", "Noelle Silva", "Yami Sukehiro", "Mimosa Vermillion", "Luck Voltia", "Fuegoleon Vermillion", "Nozel Silva", "Charlotte Roselei", "William Vangeance", "Julius Novachrono", "Magna Swing", "Vanessa Enoteca", "Finral Roulacase", "Gauche Adlai", "Charmy Pappitson", "Gordon Agrippa", "Grey", "Secre Swallowtail", "Klaus Lunettes", "Hamon Caseus", "Alecdora Sandler", "Letoile Becquerel", "Langris Vaude", "Rhya The Disloyal", "Licht", "Vetto The Despair", "Fana The Hatred", "Sally", "Rades Spirito", "Valtos", "Rill Boismortier", "Kirsch Vermillion", "Zora Ideale", "Dorothy Unsworth", "Leopold Vermillion", "Damnatio Kira", "Dante Zogratis", "Liebe", "Zagred", "Gadjah", "Gueldre", "Henry", "Jack The Ripper", "Kaiser Granvorka", "Lily Aquaria", "Loropechika", "Mars", "Mereoleona Vermillion", "Nacht Faust", "Nebra Silva", "Ralph Niaflem", "Sekke Bronzazza", "Sol Marron", "Solid Silva", "Undine", "Vanica", "Zenon Zogratis"]
-
+    
     
     
     
@@ -52,17 +52,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     var dailyGamePlayed = UserDefaults.standard.bool(forKey: "dailyGamePlayed")
     var currentDate = "currentDate"
     var allTimeCorrect = UserDefaults.standard.integer(forKey: "All-Time Correct")
-//    let characterCorrectController = CharacterCorrectViewController()
+    //    let characterCorrectController = CharacterCorrectViewController()
     
     
     override func viewDidLoad() {
-//        characterCorrectController.testingLabel.text = "viewdidload of first screen ran"
+        //        characterCorrectController.testingLabel.text = "viewdidload of first screen ran"
         let df = DateFormatter()
         df.dateFormat = "MM/dd"
         currentDate = df.string(from: Date())
         super.viewDidLoad()
         print("ths viewdidload ran")
-//        resetGame()
+        //        resetGame()
         dismissKeyboard()
         tableView.dataSource = self
         tableView.delegate = self
@@ -83,24 +83,24 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         // Do any additional setup after loading the view.
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        resetGame()
-////        characterCorrectController.testingLabel.text = "viewwillappear of first screen ran"
-//        buttonreset.setTitle("viewwillappear", for: .normal)
-//        UserDefaults.standard.set(false, forKey: "dailyGamePlayed")
-//    }
+    //    override func viewWillAppear(_ animated: Bool) {
+    //        resetGame()
+    ////        characterCorrectController.testingLabel.text = "viewwillappear of first screen ran"
+    //        buttonreset.setTitle("viewwillappear", for: .normal)
+    //        UserDefaults.standard.set(false, forKey: "dailyGamePlayed")
+    //    }
     
     override func viewDidAppear(_ animated: Bool) {
         updateCurrentDate()
         resetGame()
-//        characterCorrectController.testingLabel.text = "viewdidappear of first screen ran"
+        //        characterCorrectController.testingLabel.text = "viewdidappear of first screen ran"
         if currentDate == UserDefaults.standard.string(forKey: "lastUpdatedDate") {
             correctName = UserDefaults.standard.string(forKey: "winningCharacter")
             performSegue(withIdentifier: "CharacterCorrectViewController", sender: nil)
         }
-//
-//        print("this is the current date in the guessing view  \(currentDate)")
-//        print(currentDate)
+        //
+        //        print("this is the current date in the guessing view  \(currentDate)")
+        //        print(currentDate)
         if isKeyPresentInUserDefaults(key: "lastDatePlayed") == true {
             if UserDefaults.standard.object(forKey: "lastDatePlayed") as! String == currentDate {
                 correctName = UserDefaults.standard.string(forKey: "winningCharacter")
@@ -112,7 +112,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         }
     }
     
-
+    
     
     
     
@@ -120,7 +120,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     func isKeyPresentInUserDefaults(key: String) -> Bool {
         return UserDefaults.standard.object(forKey: key) != nil
     }
-        
+    
     
     
     
@@ -292,9 +292,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         }
         
         
-//        
-//        let characterObject = characterInfo.characters.filter{ $0.name == guessedCharacter}.first
-//        
+        //
+        //        let characterObject = characterInfo.characters.filter{ $0.name == guessedCharacter}.first
+        //
         
         if characterObject == nil {
             print("cannot find character in database")
@@ -309,8 +309,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         currentDate = df.string(from: Date())
     }
     
-  
-
+    
+    
     
     func getRandomCharacter() {
         if let randomCharacter = characterInfo.characters.randomElement() {
@@ -323,7 +323,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             correctSpirit = randomCharacter.spirit
             correctImage = randomCharacter.imageName
             correctArchNumber = randomCharacter.arcNumber
-//            print("this is the right thing \(correctImage)")
+            //            print("this is the right thing \(correctImage)")
         } else {
             print("error")
         }
@@ -349,7 +349,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         getRandomCharacter()
         guessText.text = ""
         tryAgain.text = "Guess today's Black Clover Character!"
-//        tryAgain.text = correctName
+        //        tryAgain.text = correctName
         numberOfGuesses = 0
         guesses = []
         gender = [UIImage]()
@@ -383,7 +383,7 @@ extension ViewController: UITableViewDataSource{
         if tableView == self.tableView{
             let cell = tableView.dequeueReusableCell(withIdentifier: "GuessCell", for: indexPath) as! Guess
             if guesses.count > 0 {
-                // the numberofguesses - indexpath.row - 1 get you the reverse order inputted 
+                // the numberofguesses - indexpath.row - 1 get you the reverse order inputted
                 cell.characterGender!.image = gender[numberOfGuesses - indexPath.row - 1]
                 cell.characterAffiliation!.image = affiliation[numberOfGuesses - indexPath.row - 1]
                 cell.characterMAffiliation!.image = magicAttribute[numberOfGuesses - indexPath.row - 1]
@@ -446,29 +446,26 @@ extension ViewController: UITableViewDataSource{
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if let globalFrame = guessText.superview?.convert(guessText.frame, to: self.view) {
-                let tableViewY = globalFrame.origin.y + globalFrame.height
-                      guessingTableView.frame = CGRect(x: globalFrame.origin.x,
-                                                       y: tableViewY,
-                                                       width: globalFrame.width,
-                                                       height: 300) // Adjust the height as needed
-                  }
-             
-              let totalHeight = guessingTableView.contentSize.height
-                      for constraint in guessingTableView.constraints {
-                          if constraint.firstAttribute == .height {
-                              constraint.constant = totalHeight
-                          }
-                      }
-              guessingTableView.layer.borderWidth = 1.0 // Set the thickness of the border
-              guessingTableView.layer.borderColor = UIColor.black.cgColor // Set the border color
-              guessingTableView.layer.cornerRadius = 5.0 // Optional: Add rounded corners
-              guessingTableView.clipsToBounds = true // Ensure content respects corner radius
+            let tableViewY = globalFrame.origin.y + globalFrame.height
+            guessingTableView.frame = CGRect(x: globalFrame.origin.x, y: tableViewY, width: globalFrame.width, height: 300)
+        }
+        
+        let totalHeight = guessingTableView.contentSize.height
+        for constraint in guessingTableView.constraints {
+            if constraint.firstAttribute == .height {
+                constraint.constant = totalHeight
+            }
+        }
+        guessingTableView.layer.borderWidth = 1.0
+        guessingTableView.layer.borderColor = UIColor.black.cgColor
+        guessingTableView.layer.cornerRadius = 5.0
+        guessingTableView.clipsToBounds = true 
         guessingTableView.isHidden = false
         
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-//        guessingTableView.isHidden = true
+        //        guessingTableView.isHidden = true
     }
     
     
