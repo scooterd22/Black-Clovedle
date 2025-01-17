@@ -39,7 +39,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     var debutArchTextArray = [String]()
     var characterImagesArray = [UIImage]()
     var randomCharacter = Character.self
-    let characterNames = ["Asta", "Yuno", "Noelle Silva", "Yami Sukehiro", "Mimosa Vermillion", "Luck Voltia", "Fuegoleon Vermillion", "Nozel Silva", "Charlotte Roselei", "William Vangeance", "Julius Novachrono", "Magna Swing", "Vanessa Enoteca", "Finral Roulacase", "Gauche Adlai", "Charmy Pappitson", "Gordon Agrippa", "Grey", "Secre Swallowtail", "Klaus Lunettes", "Hamon Caseus", "Alecdora Sandler", "Letoile Becquerel", "Langris Vaude", "Rhya The Disloyal", "Licht", "Vetto The Despair", "Fana The Hatred", "Sally", "Rades Spirito", "Valtos", "Rill Boismortier", "Kirsch Vermillion", "Zora Ideale", "Dorothy Unsworth", "Leopold Vermillion", "Damnatio Kira", "Dante Zogratis", "Liebe", "Zagred", "Gadjah", "Gueldre", "Henry", "Jack the Ripper", "Kaiser Granvorka", "Kirsch Vermillion", "Klaus Lunettes", "Letoile Becquerel", "Lily Aquaria", "Loropechika", "Mars", "Mereoleona Vermillion", "Nacht Faust", "Nebra Silva", "Ralph Niaflem", "Sekke Bronzazza", "Sol Marron", "Solid Silva", "Undine", "Vanica", "Zenon Zogratis"]
+    let characterNames = ["Asta", "Yuno", "Noelle Silva", "Yami Sukehiro", "Mimosa Vermillion", "Luck Voltia", "Fuegoleon Vermillion", "Nozel Silva", "Charlotte Roselei", "William Vangeance", "Julius Novachrono", "Magna Swing", "Vanessa Enoteca", "Finral Roulacase", "Gauche Adlai", "Charmy Pappitson", "Gordon Agrippa", "Grey", "Secre Swallowtail", "Klaus Lunettes", "Hamon Caseus", "Alecdora Sandler", "Letoile Becquerel", "Langris Vaude", "Rhya The Disloyal", "Licht", "Vetto The Despair", "Fana The Hatred", "Sally", "Rades Spirito", "Valtos", "Rill Boismortier", "Kirsch Vermillion", "Zora Ideale", "Dorothy Unsworth", "Leopold Vermillion", "Damnatio Kira", "Dante Zogratis", "Liebe", "Zagred", "Gadjah", "Gueldre", "Henry", "Jack The Ripper", "Kaiser Granvorka", "Lily Aquaria", "Loropechika", "Mars", "Mereoleona Vermillion", "Nacht Faust", "Nebra Silva", "Ralph Niaflem", "Sekke Bronzazza", "Sol Marron", "Solid Silva", "Undine", "Vanica", "Zenon Zogratis"]
+
     
     
     
@@ -127,6 +128,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         let guessedCharacter = guessText.text!.capitalized
         print(guessedCharacter)
         print(correctName!)
+        let characterObject = characterInfo.characters.filter{ $0.name == guessedCharacter}.first
         if guessedCharacter == correctName!.capitalized{
             guesses.append(guessText.text!.capitalized)
             print("success")
@@ -134,29 +136,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             numberOfGuesses += 1
             self.tableView.reloadData()
             guessText.text = ""
-            
-        } else if guesses.contains(guessedCharacter) {
-            tryAgain.text = "You've already guessed this character"
-            guessText.text = ""
-        } else if characterNames.contains(guessedCharacter.capitalized) && guessedCharacter.lowercased() != correctName!.lowercased(){
-            guesses.append(guessText.text!.capitalized)
-            tryAgain.text = "Try again!"
-            print(guesses)
-            numberOfGuesses += 1
-            self.tableView.reloadData()
-            guessText.text = ""
-        } else {
-            tryAgain.text = "Character not found"
-            guessText.text = ""
-            
-        }
-        
-        
-        
-        let characterObject = characterInfo.characters.filter{ $0.name == guessedCharacter}.first
-        if characterObject == nil {
-            print("cannot find character in database")
-        } else {
             print("object: \(characterObject!.name)")
             
             if correctGender == characterObject?.gender {
@@ -225,6 +204,100 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
                 characterImagesArray.append(characterObject!.imageName!)
             }
             
+            
+            
+            
+        } else if guesses.contains(guessedCharacter) {
+            tryAgain.text = "You've already guessed this character"
+            guessText.text = ""
+            
+        } else if characterNames.contains(guessedCharacter.capitalized) && guessedCharacter.lowercased() != correctName!.lowercased(){
+            guesses.append(guessText.text!.capitalized)
+            tryAgain.text = "Try again!"
+            print(guesses)
+            numberOfGuesses += 1
+            self.tableView.reloadData()
+            guessText.text = ""
+            print("object: \(characterObject!.name)")
+            
+            if correctGender == characterObject?.gender {
+                print("same gender as random character")
+                gender.append(UIImage(named: "greenCorrectTwo")!)
+                genderTextArray.append(correctGender!)
+            } else{
+                print("not the correct gender as random character")
+                gender.append(UIImage(named: "redWrongThree")!)
+                genderTextArray.append(characterObject!.gender)
+            }
+            
+            if correctAffiliation == characterObject?.affiliation {
+                print("same affiliation as random character")
+                affiliation.append(UIImage(named: "greenCorrectTwo")!)
+                affiliationTextArray.append(characterObject!.affiliation)
+                //                affliation.append(correctAffiliation!)
+                
+            }else{
+                print("not the same affiliation as random character")
+                //                affliation.append(characterObject!.affiliation)
+                affiliation.append(UIImage(named: "redWrongThree")!)
+                affiliationTextArray.append(characterObject!.affiliation)
+                
+            }
+            if correctMagicAttribute == characterObject?.magicAttribute {
+                print("the same magic attribute as random character")
+                magicAttribute.append(UIImage(named: "greenCorrectTwo")!)
+                magicTextArray.append(characterObject!.magicAttribute)
+            }else {
+                print("not the same magic attribute as random character")
+                magicAttribute.append(UIImage(named: "redWrongThree")!)
+                magicTextArray.append(characterObject!.magicAttribute)
+            }
+            
+            if correctDebutArch == characterObject?.debutArc {
+                print("the same debut arch as the random character")
+                debutArch.append(UIImage(named: "greenCorrectTwo")!)
+                debutArchTextArray.append(characterObject!.debutArc)
+            } else {
+                print ("not the same debut arch as the random character")
+                if correctArchNumber < characterObject!.arcNumber{
+                    debutArch.append(UIImage(named: "redArrowDown")!)
+                } else{
+                    debutArch.append(UIImage(named: "redArrowUp")!)
+                }
+                debutArchTextArray.append(characterObject!.debutArc)
+            }
+            if correctSpirit == characterObject?.spirit {
+                print("the same spirit as the random character")
+                spirit.append(UIImage(named: "greenCorrectTwo")!)
+                spiritTextArray.append(characterObject!.spirit!)
+            }else {
+                print("not the same spirit as the random character")
+                spirit.append(UIImage(named: "redWrongThree")!)
+                spiritTextArray.append(characterObject!.spirit!)
+            }
+            if correctImage == characterObject?.imageName {
+                print("image is correct")
+                characterImagesArray.append(characterObject!.imageName!)
+                allTimeCorrect += 1
+                UserDefaults.standard.set(allTimeCorrect, forKey: "All-Time Correct")
+                UserDefaults.standard.set(currentDate, forKey: "lastUpdatedDate")
+                performSegue(withIdentifier: "CharacterCorrectViewController", sender: nil)
+            }else {
+                characterImagesArray.append(characterObject!.imageName!)
+            }
+        } else {
+            tryAgain.text = "Character not found"
+            guessText.text = ""
+            
+        }
+        
+        
+//        
+//        let characterObject = characterInfo.characters.filter{ $0.name == guessedCharacter}.first
+//        
+        
+        if characterObject == nil {
+            print("cannot find character in database")
         }
     }
     
@@ -235,6 +308,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         df.dateFormat = "MM/dd"
         currentDate = df.string(from: Date())
     }
+    
+  
 
     
     func getRandomCharacter() {
@@ -348,7 +423,7 @@ extension ViewController: UITableViewDataSource{
             
         } else {
             guessText.text = filteredData[indexPath.row]
-            guessingTableView.isHidden = false
+            guessingTableView.isHidden = true
             guessText.resignFirstResponder()
         }
         
@@ -370,11 +445,30 @@ extension ViewController: UITableViewDataSource{
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        if let globalFrame = guessText.superview?.convert(guessText.frame, to: self.view) {
+                let tableViewY = globalFrame.origin.y + globalFrame.height
+                      guessingTableView.frame = CGRect(x: globalFrame.origin.x,
+                                                       y: tableViewY,
+                                                       width: globalFrame.width,
+                                                       height: 300) // Adjust the height as needed
+                  }
+             
+              let totalHeight = guessingTableView.contentSize.height
+                      for constraint in guessingTableView.constraints {
+                          if constraint.firstAttribute == .height {
+                              constraint.constant = totalHeight
+                          }
+                      }
+              guessingTableView.layer.borderWidth = 1.0 // Set the thickness of the border
+              guessingTableView.layer.borderColor = UIColor.black.cgColor // Set the border color
+              guessingTableView.layer.cornerRadius = 5.0 // Optional: Add rounded corners
+              guessingTableView.clipsToBounds = true // Ensure content respects corner radius
         guessingTableView.isHidden = false
+        
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        guessingTableView.isHidden = true
+//        guessingTableView.isHidden = true
     }
     
     

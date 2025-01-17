@@ -56,7 +56,6 @@ class CharacterCorrectViewController: UIViewController {
     func updateTotalCorrect() {
         let lastUpdatedDate = UserDefaults.standard.string(forKey: "lastUpdatedDate") ?? ""
             if currentDate != lastUpdatedDate {
-                testingLabel.text = "currentdate != lastupdateddate"
                 dismiss(animated: true, completion: nil)
             }
             updateTotalCorrectLabel()
