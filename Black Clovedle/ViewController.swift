@@ -8,6 +8,7 @@
 import UIKit
 import Foundation
 import SwiftUI
+import CryptoKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate {
     
@@ -17,6 +18,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var guessText: UITextField!
     @IBOutlet weak var buttonreset: UIButton!
+    var tapDismissView: UIView!
     var correctName: String?
     var correctGender: String?
     var correctAffiliation: String?
@@ -56,6 +58,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     
     
     override func viewDidLoad() {
+        tapDismissView = UIView(frame: view.bounds)
+        tapDismissView.backgroundColor = UIColor.clear
+        tapDismissView.isHidden = true
+        tapDismissView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardAndTable)))
+        view.addSubview(tapDismissView)
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardAndTable))
+            tapGesture.cancelsTouchesInView = false
+        
         //        characterCorrectController.testingLabel.text = "viewdidload of first screen ran"
         let df = DateFormatter()
         df.dateFormat = "MM/dd"
@@ -79,6 +90,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             
             
         }
+        
+        guessText.textContentType = .name
+        
         
         // Do any additional setup after loading the view.
     }
@@ -112,8 +126,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         }
     }
     
-    
-    
+//    @objc func dismissKeyboardAndTable(_ sender: UITapGestureRecognizer) {
+//        let location = sender.location(in: view) // Get tap location
+//        
+//        if !guessingTableView.frame.contains(location) { // If tap is outside guessingTableView
+//            guessingTableView.isHidden = true
+//            view.endEditing(true)
+//        }
+//    }
+//
+//    
+//    
+//    
     
     
     
@@ -125,6 +149,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     
     
     @IBAction func submitPressed(_ sender: Any) {
+        guessingTableView.isHidden = true
         let guessedCharacter = guessText.text!.capitalized
         print(guessedCharacter)
         print(correctName!)
@@ -311,9 +336,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     
     
     
-    
     func getRandomCharacter() {
-        if let randomCharacter = characterInfo.characters.randomElement() {
+         let randomCharacter = getNameForToday()
             print("Random Character: \(randomCharacter.name), Gender: \(randomCharacter.gender) Affiliation: \(randomCharacter.affiliation), Magic Attribute: \(randomCharacter.magicAttribute), Debut Arch: \(randomCharacter.debutArc), Arch Number: \(randomCharacter.debutArc)")
             correctName = randomCharacter.name
             correctGender = randomCharacter.gender
@@ -324,9 +348,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             correctImage = randomCharacter.imageName
             correctArchNumber = randomCharacter.arcNumber
             //            print("this is the right thing \(correctImage)")
-        } else {
-            print("error")
-        }
+        
     }
     
     @IBAction func buttonToReset(_ sender: Any) {
@@ -366,6 +388,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         self.tableView.reloadData()
     }
 }
+
+
+
+
 
 
 
@@ -418,21 +444,25 @@ extension ViewController: UITableViewDataSource{
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
-        if tableView == self.tableView {
-            
-        } else {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView == guessingTableView {
             guessText.text = filteredData[indexPath.row]
             guessingTableView.isHidden = true
+            tapDismissView.isHidden = true // Hide overlay when selecting an item
             guessText.resignFirstResponder()
         }
-        
-        
-        
+    }
+
+    @objc func dismissKeyboardAndTable() {
+        guessingTableView.isHidden = true
+        tapDismissView.isHidden = true // Hide the overlay when dismissed
+        view.endEditing(true)
     }
     
     
+    
     @objc func TextfieldDidChange(_ guessText: UITextField) {
+        guessingTableView.isHidden = false
         filterData()
     }
     
@@ -459,27 +489,62 @@ extension ViewController: UITableViewDataSource{
         guessingTableView.layer.borderWidth = 1.0
         guessingTableView.layer.borderColor = UIColor.black.cgColor
         guessingTableView.layer.cornerRadius = 5.0
-        guessingTableView.clipsToBounds = true 
-        guessingTableView.isHidden = false
+        guessingTableView.clipsToBounds = true
+//
         
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        //        guessingTableView.isHidden = true
+       //        guessingTableView.isHidden = true
     }
     
+    @objc func dismissKeyboard() {
+            if !guessingTableView.isHidden {
+                guessingTableView.isHidden = true
+            } else {
+                view.endEditing(true)
+            }
+
+    }
+
     
     
+
+
+    func getNameForToday() -> Character {
+        // Get the current date in "yyyy-MM-dd" format
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let todayString = formatter.string(from: Date())
+       
+        // Generate a deterministic hash from the date
+        let hash = sha256Hash(todayString)
+       
+        // Use the hash to determine the index in the names array
+    let index = hash % characterInfo.characters.count
+    return characterInfo.characters[index]
+    }
+   
+    func sha256Hash(_ input: String) -> Int {
+        // Use CryptoKit to generate a SHA256 hash
+        let data = Data(input.utf8)
+        let hash = SHA256.hash(data: data)
+       
+        // Convert the first 8 bytes of the hash to an integer
+        let hashBytes = Array(hash.prefix(8))
+        let hashValue = hashBytes.reduce(0) { ($0 << 8) | Int($1) }
+        return abs(hashValue)
+    }
 }
 
 extension ViewController {
     
-    
-    func dismissKeyboard() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer( target:     self, action:    #selector(self.dismissKeyboardTouchOutside))
-        tap.cancelsTouchesInView = false
-        tableView.addGestureRecognizer(tap)
-    }
+//    
+//    func dismissKeyboard() {
+//        let tap: UITapGestureRecognizer = UITapGestureRecognizer( target:     self, action:    #selector(self.dismissKeyboardTouchOutside))
+//        tap.cancelsTouchesInView = false
+//        tableView.addGestureRecognizer(tap)
+//    }
     
     @objc private func dismissKeyboardTouchOutside() {
         view.endEditing(true)
