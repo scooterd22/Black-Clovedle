@@ -39,19 +39,11 @@ class CharacterCorrectViewController: UIViewController {
 
     }
     
-//    
-//    override func viewWillAppear(_ animated: Bool) {
-//        updateCurrentDate()
-//        print("this is the current date \(currentDate)")
-//        // call?
-//        updateTotalCorrect()
-//        countdownTimerUpdate() // setting initial label before timer updates
-//        startTimer()
-//        todaysCharacter.text = "Today's character was \(correctCharacter)"
-//        todaysCharacterImage?.image = correctImageSecondView
-//        UserDefaults.standard.set(correctCharacter ,forKey: "winningCharacter")
-//    }
-//    
+   
+    override func viewWillAppear(_ animated: Bool) {
+        updateCurrentDate()
+    }
+ 
     
     func updateTotalCorrect() {
         let lastUpdatedDate = UserDefaults.standard.string(forKey: "lastUpdatedDate") ?? ""

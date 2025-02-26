@@ -38,12 +38,24 @@
                                             <action selector="submitPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4PV-AW-1b9"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Fi-Ot-NEr" userLabel="Chevron">
+                                        <rect key="frame" x="210" y="8" width="30" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="chevron.down" catalog="system"/>
+                                        <connections>
+                                            <action selector="Chevron:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Bg-0R-KJg"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="gow-xk-jRG" firstAttribute="leading" secondItem="2Fi-Ot-NEr" secondAttribute="trailing" constant="15" id="1aY-EJ-84r"/>
                                     <constraint firstItem="lfg-lg-7mF" firstAttribute="leading" secondItem="CwV-ZR-QH2" secondAttribute="leading" constant="13" id="KXR-Ci-xR5"/>
+                                    <constraint firstItem="2Fi-Ot-NEr" firstAttribute="top" secondItem="CwV-ZR-QH2" secondAttribute="top" constant="8" id="Trm-EQ-JAI"/>
+                                    <constraint firstItem="2Fi-Ot-NEr" firstAttribute="leading" secondItem="CwV-ZR-QH2" secondAttribute="leading" constant="210" id="eKR-Pg-ezR"/>
                                     <constraint firstItem="lfg-lg-7mF" firstAttribute="top" secondItem="CwV-ZR-QH2" secondAttribute="top" constant="8" id="gRD-jJ-KOl"/>
                                     <constraint firstAttribute="trailing" secondItem="gow-xk-jRG" secondAttribute="trailing" constant="6" id="j9D-fb-z0y"/>
                                     <constraint firstItem="gow-xk-jRG" firstAttribute="leading" secondItem="lfg-lg-7mF" secondAttribute="trailing" constant="13" id="jPt-W9-0GW"/>
+                                    <constraint firstAttribute="bottom" secondItem="2Fi-Ot-NEr" secondAttribute="bottom" constant="20.670000000000002" id="nuF-Lj-cEj"/>
                                     <constraint firstItem="gow-xk-jRG" firstAttribute="top" secondItem="CwV-ZR-QH2" secondAttribute="top" constant="8" id="pLg-Yc-bxi"/>
                                     <constraint firstAttribute="height" constant="63" id="w6V-q1-UDn"/>
                                 </constraints>
@@ -118,7 +130,7 @@
                                 <color key="tintColor" name="AccentColor"/>
                             </tableView>
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="dU7-8t-MBI" userLabel="Guessing Area">
-                                <rect key="frame" x="31" y="196" width="228" height="371"/>
+                                <rect key="frame" x="31" y="196" width="228" height="256"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
@@ -143,8 +155,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="chevron" destination="2Fi-Ot-NEr" id="teV-fP-Qm2"/>
                         <outlet property="guessText" destination="lfg-lg-7mF" id="KbM-4J-aNF"/>
                         <outlet property="guessingTableView" destination="dU7-8t-MBI" id="FOd-zJ-oN1"/>
+                        <outlet property="submit" destination="gow-xk-jRG" id="sck-Vk-HnC"/>
                         <outlet property="tableView" destination="YRU-TH-hMe" id="joT-6F-PfJ"/>
                         <outlet property="tryAgain" destination="cTu-ng-HkA" id="ANT-uL-Rrq"/>
                         <segue destination="9Eq-45-HBK" kind="presentation" identifier="CharacterCorrectViewController" id="uH5-Zi-Pth"/>
@@ -244,6 +258,7 @@
     </scenes>
     <resources>
         <image name="Alecdora" width="564" height="317"/>
+        <image name="chevron.down" catalog="system" width="128" height="70"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

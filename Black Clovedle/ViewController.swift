@@ -17,7 +17,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     @IBOutlet weak var tryAgain: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var guessText: UITextField!
-    @IBOutlet weak var buttonreset: UIButton!
+    @IBOutlet weak var chevron: UIButton!
+    @IBOutlet weak var submit: UIButton!
     var tapDismissView: UIView!
     var correctName: String?
     var correctGender: String?
@@ -29,7 +30,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     var numberOfGuesses = 0
     var guesses = [String]()
     var gender = [UIImage]()
-    // the two below could be images
     var affiliation = [UIImage]()
     var magicAttribute = [UIImage]()
     var debutArch = [UIImage]()
@@ -42,10 +42,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     var characterImagesArray = [UIImage]()
     var randomCharacter = Character.self
     let characterNames = ["Asta", "Yuno", "Noelle Silva", "Yami Sukehiro", "Mimosa Vermillion", "Luck Voltia", "Fuegoleon Vermillion", "Nozel Silva", "Charlotte Roselei", "William Vangeance", "Julius Novachrono", "Magna Swing", "Vanessa Enoteca", "Finral Roulacase", "Gauche Adlai", "Charmy Pappitson", "Gordon Agrippa", "Grey", "Secre Swallowtail", "Klaus Lunettes", "Hamon Caseus", "Alecdora Sandler", "Letoile Becquerel", "Langris Vaude", "Rhya The Disloyal", "Licht", "Vetto The Despair", "Fana The Hatred", "Sally", "Rades Spirito", "Valtos", "Rill Boismortier", "Kirsch Vermillion", "Zora Ideale", "Dorothy Unsworth", "Leopold Vermillion", "Damnatio Kira", "Dante Zogratis", "Liebe", "Zagred", "Gadjah", "Gueldre", "Henry", "Jack The Ripper", "Kaiser Granvorka", "Lily Aquaria", "Loropechika", "Mars", "Mereoleona Vermillion", "Nacht Faust", "Nebra Silva", "Ralph Niaflem", "Sekke Bronzazza", "Sol Marron", "Solid Silva", "Undine", "Vanica", "Zenon Zogratis"]
-    
-    
-    
-    
     var filteredData: [String] = []
     let characterInfo = CharacterInfo()
     let characterUpdates = Guess()
@@ -55,9 +51,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     var currentDate = "currentDate"
     var allTimeCorrect = UserDefaults.standard.integer(forKey: "All-Time Correct")
     //    let characterCorrectController = CharacterCorrectViewController()
+    var currentGameDate = UserDefaults.standard.string(forKey: "currentGameDate")
     
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+        submit.tintColor = .black
         tapDismissView = UIView(frame: view.bounds)
         tapDismissView.backgroundColor = UIColor.clear
         tapDismissView.isHidden = true
@@ -105,16 +105,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     //    }
     
     override func viewDidAppear(_ animated: Bool) {
+        print("viewdidappearran")
         updateCurrentDate()
-        resetGame()
-        //        characterCorrectController.testingLabel.text = "viewdidappear of first screen ran"
+        getRandomCharacter()
         if currentDate == UserDefaults.standard.string(forKey: "lastUpdatedDate") {
             correctName = UserDefaults.standard.string(forKey: "winningCharacter")
             performSegue(withIdentifier: "CharacterCorrectViewController", sender: nil)
         }
-        //
-        //        print("this is the current date in the guessing view  \(currentDate)")
-        //        print(currentDate)
         if isKeyPresentInUserDefaults(key: "lastDatePlayed") == true {
             if UserDefaults.standard.object(forKey: "lastDatePlayed") as! String == currentDate {
                 correctName = UserDefaults.standard.string(forKey: "winningCharacter")
@@ -126,18 +123,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         }
     }
     
-//    @objc func dismissKeyboardAndTable(_ sender: UITapGestureRecognizer) {
-//        let location = sender.location(in: view) // Get tap location
-//        
-//        if !guessingTableView.frame.contains(location) { // If tap is outside guessingTableView
-//            guessingTableView.isHidden = true
-//            view.endEditing(true)
-//        }
-//    }
-//
-//    
-//    
-//    
+    
+    @objc func appDidBecomeActive() {
+        print("app did become active")
+        
+        updateCurrentDate()
+       
+        
+        if currentGameDate != currentDate {
+            print("did this run?")
+            resetGame()
+            
+        }
+        
+        
+    }
+   
+    
+    @IBAction func Chevron(_ sender: Any) {
+        changeChevronState()
+    }
     
     
     
@@ -145,11 +150,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         return UserDefaults.standard.object(forKey: key) != nil
     }
     
-    
+    func changeChevronState() {
+        if guessingTableView.isHidden == true {
+            let chevronUp = UIImage(systemName: "chevron.up")
+            chevron.setImage(chevronUp, for: .normal )
+            guessingTableView.isHidden = false
+        } else {
+            let chevronDown = UIImage(systemName: "chevron.down")
+            chevron.setImage(chevronDown, for: .normal )
+            guessingTableView.isHidden = true
+        }
+        
+    }
     
     
     @IBAction func submitPressed(_ sender: Any) {
-        guessingTableView.isHidden = true
+        currentGameDate = currentDate
+        UserDefaults.standard.set(currentGameDate, forKey: "currentGameDate")
         let guessedCharacter = guessText.text!.capitalized
         print(guessedCharacter)
         print(correctName!)
@@ -177,11 +194,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
                 print("same affiliation as random character")
                 affiliation.append(UIImage(named: "greenCorrectTwo")!)
                 affiliationTextArray.append(characterObject!.affiliation)
-                //                affliation.append(correctAffiliation!)
-                
+        
             }else{
                 print("not the same affiliation as random character")
-                //                affliation.append(characterObject!.affiliation)
                 affiliation.append(UIImage(named: "redWrongThree")!)
                 affiliationTextArray.append(characterObject!.affiliation)
                 
@@ -259,11 +274,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
                 print("same affiliation as random character")
                 affiliation.append(UIImage(named: "greenCorrectTwo")!)
                 affiliationTextArray.append(characterObject!.affiliation)
-                //                affliation.append(correctAffiliation!)
-                
+ 
             }else{
                 print("not the same affiliation as random character")
-                //                affliation.append(characterObject!.affiliation)
                 affiliation.append(UIImage(named: "redWrongThree")!)
                 affiliationTextArray.append(characterObject!.affiliation)
                 
@@ -317,10 +330,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         }
         
         
-        //
-        //        let characterObject = characterInfo.characters.filter{ $0.name == guessedCharacter}.first
-        //
-        
         if characterObject == nil {
             print("cannot find character in database")
         }
@@ -347,8 +356,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             correctSpirit = randomCharacter.spirit
             correctImage = randomCharacter.imageName
             correctArchNumber = randomCharacter.arcNumber
-            //            print("this is the right thing \(correctImage)")
-        
     }
     
     @IBAction func buttonToReset(_ sender: Any) {
@@ -364,8 +371,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             }
         }
     }
-    
-    
     
     func resetGame(){
         getRandomCharacter()
@@ -388,12 +393,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         self.tableView.reloadData()
     }
 }
-
-
-
-
-
-
 
 extension ViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -444,17 +443,21 @@ extension ViewController: UITableViewDataSource{
         }
     }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == guessingTableView {
             guessText.text = filteredData[indexPath.row]
-            guessingTableView.isHidden = true
+//            guessingTableView.isHidden = true
+            changeChevronState()
             tapDismissView.isHidden = true // Hide overlay when selecting an item
+            
             guessText.resignFirstResponder()
         }
     }
 
     @objc func dismissKeyboardAndTable() {
-        guessingTableView.isHidden = true
+//        guessingTableView.isHidden = true
+        changeChevronState()
         tapDismissView.isHidden = true // Hide the overlay when dismissed
         view.endEditing(true)
     }
@@ -463,6 +466,8 @@ extension ViewController: UITableViewDataSource{
     
     @objc func TextfieldDidChange(_ guessText: UITextField) {
         guessingTableView.isHidden = false
+        let chevronUp = UIImage(systemName: "chevron.up")
+        chevron.setImage(chevronUp, for: .normal )
         filterData()
     }
     
@@ -490,61 +495,46 @@ extension ViewController: UITableViewDataSource{
         guessingTableView.layer.borderColor = UIColor.black.cgColor
         guessingTableView.layer.cornerRadius = 5.0
         guessingTableView.clipsToBounds = true
-//
         
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-       //        guessingTableView.isHidden = true
-    }
     
     @objc func dismissKeyboard() {
             if !guessingTableView.isHidden {
-                guessingTableView.isHidden = true
+                changeChevronState()
             } else {
                 view.endEditing(true)
             }
 
     }
 
-    
-    
-
-
     func getNameForToday() -> Character {
-        // Get the current date in "yyyy-MM-dd" format
+        
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         let todayString = formatter.string(from: Date())
        
-        // Generate a deterministic hash from the date
+       
         let hash = sha256Hash(todayString)
        
-        // Use the hash to determine the index in the names array
+     
     let index = hash % characterInfo.characters.count
     return characterInfo.characters[index]
     }
    
     func sha256Hash(_ input: String) -> Int {
-        // Use CryptoKit to generate a SHA256 hash
         let data = Data(input.utf8)
         let hash = SHA256.hash(data: data)
-       
-        // Convert the first 8 bytes of the hash to an integer
         let hashBytes = Array(hash.prefix(8))
         let hashValue = hashBytes.reduce(0) { ($0 << 8) | Int($1) }
         return abs(hashValue)
     }
+     
+    
 }
 
 extension ViewController {
     
-//    
-//    func dismissKeyboard() {
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer( target:     self, action:    #selector(self.dismissKeyboardTouchOutside))
-//        tap.cancelsTouchesInView = false
-//        tableView.addGestureRecognizer(tap)
-//    }
     
     @objc private func dismissKeyboardTouchOutside() {
         view.endEditing(true)
