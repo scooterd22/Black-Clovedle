@@ -52,6 +52,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     var allTimeCorrect = UserDefaults.standard.integer(forKey: "All-Time Correct")
     //    let characterCorrectController = CharacterCorrectViewController()
     var currentGameDate = UserDefaults.standard.string(forKey: "currentGameDate")
+    var correctDailyCharacter = UserDefaults.standard.string(forKey: "correctDailyCharacter")
     
     
     override func viewDidLoad() {
@@ -67,7 +68,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardAndTable))
             tapGesture.cancelsTouchesInView = false
         
-        //        characterCorrectController.testingLabel.text = "viewdidload of first screen ran"
+        
         let df = DateFormatter()
         df.dateFormat = "MM/dd"
         currentDate = df.string(from: Date())
@@ -83,6 +84,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         guessText.addTarget(self, action: #selector(TextfieldDidChange(_:)), for: .editingChanged)
         tableView.register(UINib(nibName: "Guess", bundle: nil), forCellReuseIdentifier: "GuessCell")
         guessingTableView.isHidden = true
+        tableView.reloadData()
         
         if currentDate == UserDefaults.standard.string(forKey: "lastUpdatedDate") {
             correctName = UserDefaults.standard.string(forKey: "winningCharacter")
@@ -93,21 +95,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         
         guessText.textContentType = .name
         
-        
-        // Do any additional setup after loading the view.
+       
     }
     
-    //    override func viewWillAppear(_ animated: Bool) {
-    //        resetGame()
-    ////        characterCorrectController.testingLabel.text = "viewwillappear of first screen ran"
-    //        buttonreset.setTitle("viewwillappear", for: .normal)
-    //        UserDefaults.standard.set(false, forKey: "dailyGamePlayed")
-    //    }
+  
     
     override func viewDidAppear(_ animated: Bool) {
         print("viewdidappearran")
         updateCurrentDate()
         getRandomCharacter()
+        tableView.reloadData()
         if currentDate == UserDefaults.standard.string(forKey: "lastUpdatedDate") {
             correctName = UserDefaults.standard.string(forKey: "winningCharacter")
             performSegue(withIdentifier: "CharacterCorrectViewController", sender: nil)
@@ -127,8 +124,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     @objc func appDidBecomeActive() {
         print("app did become active")
         
+        
+        getRandomCharacter()
+        loadGuessTable()
         updateCurrentDate()
+        
+        
+        for guess in guesses {
+            rebuildTable(name: guess)
+            
+        }
+        
+     
        
+        
         
         if currentGameDate != currentDate {
             print("did this run?")
@@ -138,6 +147,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         
         
     }
+    
+//    
+//    func saveImagesToUserDefaults(images: [UIImage], key: String) {
+//        let imageDataArray = images.compactMap { $0.pngData() }
+//        UserDefaults.standard.set(imageDataArray, forKey: key)
+//    }
+//
+//    func loadImagesFromUserDefaults(key: String) -> [UIImage] {
+//        guard let imageDataArray = UserDefaults.standard.array(forKey: key) as? [Data] else {
+//            return []
+//        }
+//        return imageDataArray.compactMap { UIImage(data: $0) }
+//    }
+
    
     
     @IBAction func Chevron(_ sender: Any) {
@@ -256,6 +279,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             tryAgain.text = "Try again!"
             print(guesses)
             numberOfGuesses += 1
+            saveGuessTable()
             self.tableView.reloadData()
             guessText.text = ""
             print("object: \(characterObject!.name)")
@@ -335,6 +359,141 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         }
     }
     
+    func saveGuessTable() {
+        UserDefaults.standard.set(guesses, forKey: "guesses")
+        
+
+    }
+    
+    func loadGuessTable() {
+        guesses = UserDefaults.standard.stringArray(forKey: "guesses") ?? []
+    }
+    
+    func rebuildTable(name: String) {
+        currentGameDate = currentDate
+           UserDefaults.standard.set(currentGameDate, forKey: "currentGameDate")
+           let guessedCharacter = name.capitalized
+           let characterObject = characterInfo.characters.filter{ $0.name == guessedCharacter}.first
+           
+           if guessedCharacter == correctName!.capitalized {
+               guesses.append(guessText.text!.capitalized)
+               self.tableView.reloadData()
+               
+               if correctGender == characterObject?.gender {
+                   gender.append(UIImage(named: "greenCorrectTwo")!)
+                   genderTextArray.append(correctGender!)
+               } else {
+                   gender.append(UIImage(named: "redWrongThree")!)
+                   genderTextArray.append(characterObject!.gender)
+               }
+               
+               if correctAffiliation == characterObject?.affiliation {
+                   affiliation.append(UIImage(named: "greenCorrectTwo")!)
+                   affiliationTextArray.append(characterObject!.affiliation)
+               } else {
+                   affiliation.append(UIImage(named: "redWrongThree")!)
+                   affiliationTextArray.append(characterObject!.affiliation)
+               }
+               
+               if correctMagicAttribute == characterObject?.magicAttribute {
+                   magicAttribute.append(UIImage(named: "greenCorrectTwo")!)
+                   magicTextArray.append(characterObject!.magicAttribute)
+               } else {
+                   magicAttribute.append(UIImage(named: "redWrongThree")!)
+                   magicTextArray.append(characterObject!.magicAttribute)
+               }
+               
+               if correctDebutArch == characterObject?.debutArc {
+                   debutArch.append(UIImage(named: "greenCorrectTwo")!)
+                   debutArchTextArray.append(characterObject!.debutArc)
+               } else {
+                   if correctArchNumber < characterObject!.arcNumber {
+                       debutArch.append(UIImage(named: "redArrowDown")!)
+                   } else {
+                       debutArch.append(UIImage(named: "redArrowUp")!)
+                   }
+                   debutArchTextArray.append(characterObject!.debutArc)
+               }
+               
+               if correctSpirit == characterObject?.spirit {
+                   spirit.append(UIImage(named: "greenCorrectTwo")!)
+                   spiritTextArray.append(characterObject!.spirit!)
+               } else {
+                   spirit.append(UIImage(named: "redWrongThree")!)
+                   spiritTextArray.append(characterObject!.spirit!)
+               }
+               
+               if correctImage == characterObject?.imageName {
+                   characterImagesArray.append(characterObject!.imageName!)
+                   allTimeCorrect += 1
+                   UserDefaults.standard.set(allTimeCorrect, forKey: "All-Time Correct")
+                   UserDefaults.standard.set(currentDate, forKey: "lastUpdatedDate")
+                   performSegue(withIdentifier: "CharacterCorrectViewController", sender: nil)
+               } else {
+                   characterImagesArray.append(characterObject!.imageName!)
+               }
+               
+           }  else if characterNames.contains(guessedCharacter.capitalized) && guessedCharacter.lowercased() != correctName!.lowercased() {
+//               self.tableView.reloadData()
+               
+               if correctGender == characterObject?.gender {
+                   gender.append(UIImage(named: "greenCorrectTwo")!)
+                   genderTextArray.append(correctGender!)
+               } else {
+                   gender.append(UIImage(named: "redWrongThree")!)
+                   genderTextArray.append(characterObject!.gender)
+               }
+               
+               if correctAffiliation == characterObject?.affiliation {
+                   affiliation.append(UIImage(named: "greenCorrectTwo")!)
+                   affiliationTextArray.append(characterObject!.affiliation)
+               } else {
+                   affiliation.append(UIImage(named: "redWrongThree")!)
+                   affiliationTextArray.append(characterObject!.affiliation)
+               }
+               
+               if correctMagicAttribute == characterObject?.magicAttribute {
+                   magicAttribute.append(UIImage(named: "greenCorrectTwo")!)
+                   magicTextArray.append(characterObject!.magicAttribute)
+               } else {
+                   magicAttribute.append(UIImage(named: "redWrongThree")!)
+                   magicTextArray.append(characterObject!.magicAttribute)
+               }
+               
+               if correctDebutArch == characterObject?.debutArc {
+                   debutArch.append(UIImage(named: "greenCorrectTwo")!)
+                   debutArchTextArray.append(characterObject!.debutArc)
+               } else {
+                   if correctArchNumber < characterObject!.arcNumber {
+                       debutArch.append(UIImage(named: "redArrowDown")!)
+                   } else {
+                       debutArch.append(UIImage(named: "redArrowUp")!)
+                   }
+                   debutArchTextArray.append(characterObject!.debutArc)
+               }
+               
+               if correctSpirit == characterObject?.spirit {
+                   spirit.append(UIImage(named: "greenCorrectTwo")!)
+                   spiritTextArray.append(characterObject!.spirit!)
+               } else {
+                   spirit.append(UIImage(named: "redWrongThree")!)
+                   spiritTextArray.append(characterObject!.spirit!)
+               }
+               
+               if correctImage == characterObject?.imageName {
+                   characterImagesArray.append(characterObject!.imageName!)
+                   allTimeCorrect += 1
+                   UserDefaults.standard.set(allTimeCorrect, forKey: "All-Time Correct")
+                   UserDefaults.standard.set(currentDate, forKey: "lastUpdatedDate")
+                   performSegue(withIdentifier: "CharacterCorrectViewController", sender: nil)
+               } else {
+                   characterImagesArray.append(characterObject!.imageName!)
+               }
+           }
+    }
+    
+    
+    
     
     
     func updateCurrentDate() {
@@ -358,9 +517,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             correctArchNumber = randomCharacter.arcNumber
     }
     
-    @IBAction func buttonToReset(_ sender: Any) {
-        resetGame()
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CharacterCorrectViewController" {
@@ -509,15 +665,10 @@ extension ViewController: UITableViewDataSource{
     }
 
     func getNameForToday() -> Character {
-        
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         let todayString = formatter.string(from: Date())
-       
-       
         let hash = sha256Hash(todayString)
-       
-     
     let index = hash % characterInfo.characters.count
     return characterInfo.characters[index]
     }
@@ -529,6 +680,8 @@ extension ViewController: UITableViewDataSource{
         let hashValue = hashBytes.reduce(0) { ($0 << 8) | Int($1) }
         return abs(hashValue)
     }
+    
+    
      
     
 }
