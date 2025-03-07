@@ -28,7 +28,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     var correctSpirit: String?
     var correctImage: UIImage?
     var numberOfGuesses = 0
-    var guesses = [String]()
+    var guesses = ["Asta"]
     var gender = [UIImage]()
     var affiliation = [UIImage]()
     var magicAttribute = [UIImage]()
@@ -72,7 +72,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         let df = DateFormatter()
         df.dateFormat = "MM/dd"
         currentDate = df.string(from: Date())
-        super.viewDidLoad()
         print("ths viewdidload ran")
         //        resetGame()
         dismissKeyboard()
@@ -101,6 +100,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
   
     
     override func viewDidAppear(_ animated: Bool) {
+        submit.tintColor = .black
         print("viewdidappearran")
         updateCurrentDate()
         getRandomCharacter()
@@ -124,27 +124,32 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
     @objc func appDidBecomeActive() {
         print("app did become active")
         
-        
-        getRandomCharacter()
-        loadGuessTable()
         updateCurrentDate()
-        
-        
-        for guess in guesses {
-            rebuildTable(name: guess)
-            
-        }
-        
-     
-       
-        
-        
         if currentGameDate != currentDate {
             print("did this run?")
+            clearGuessTable()
             resetGame()
             
+        } else {
+            resetGame()
+            getRandomCharacter()
+            loadGuessTable()
+            
+            
+            DispatchQueue.main.async{
+                for guess in self.guesses {
+                    self.rebuildTable(name: guess)
+                    
+                }
+                
+                self.tableView.reloadData()
+                
+            }
         }
+       
+       
         
+   
         
     }
     
@@ -193,6 +198,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         let guessedCharacter = guessText.text!.capitalized
         print(guessedCharacter)
         print(correctName!)
+        print(guesses.count)
+        UserDefaults.standard.set(guesses.count, forKey: "guessCount")
         let characterObject = characterInfo.characters.filter{ $0.name == guessedCharacter}.first
         if guessedCharacter == correctName!.capitalized{
             guesses.append(guessText.text!.capitalized)
@@ -369,11 +376,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         guesses = UserDefaults.standard.stringArray(forKey: "guesses") ?? []
     }
     
+        func clearGuessTable() {
+            guesses = []
+            UserDefaults.standard.set(guesses, forKey: "guesses")
+        }
+    
     func rebuildTable(name: String) {
         currentGameDate = currentDate
            UserDefaults.standard.set(currentGameDate, forKey: "currentGameDate")
            let guessedCharacter = name.capitalized
            let characterObject = characterInfo.characters.filter{ $0.name == guessedCharacter}.first
+        numberOfGuesses += 1
            
            if guessedCharacter == correctName!.capitalized {
                guesses.append(guessText.text!.capitalized)
@@ -485,7 +498,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
                    allTimeCorrect += 1
                    UserDefaults.standard.set(allTimeCorrect, forKey: "All-Time Correct")
                    UserDefaults.standard.set(currentDate, forKey: "lastUpdatedDate")
-                   performSegue(withIdentifier: "CharacterCorrectViewController", sender: nil)
                } else {
                    characterImagesArray.append(characterObject!.imageName!)
                }
@@ -500,6 +512,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
         let df = DateFormatter()
         df.dateFormat = "MM/dd"
         currentDate = df.string(from: Date())
+        if currentGameDate != currentDate {
+            clearGuessTable()
+        }
     }
     
     
@@ -523,6 +538,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITextFieldDelegate
             if let destinationVC = segue.destination as? CharacterCorrectViewController {
                 destinationVC.modalPresentationStyle = .fullScreen
                 destinationVC.correctCharacter = correctName!
+                print("this is the print in the view controller \(guesses.count)")
+                destinationVC.guessesCount = guesses.count
                 destinationVC.correctImageSecondView = UIImage(named: "\(correctName!)")
             }
         }

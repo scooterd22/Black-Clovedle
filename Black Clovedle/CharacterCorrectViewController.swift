@@ -12,36 +12,57 @@ import SwiftUI
 
 class CharacterCorrectViewController: UIViewController {
     var correctCharacter = ""
+    var guessesCount = UserDefaults.standard.integer(forKey: "guessCount")
     var correctImageSecondView: UIImage?
     @IBOutlet weak var todaysCharacter: UILabel!
     @IBOutlet weak var testingLabel: UILabel!
     @IBOutlet weak var todaysCharacterImage: UIImageView?
     @IBOutlet weak var countdown: UILabel!
     @IBOutlet weak var totalCorrect: UILabel!
+    @IBOutlet weak var guesses: UITextField!
+    @IBOutlet weak var guessesTextLabel: UILabel!
     var timer = Timer()
     var guessingScreen = ViewController()
     var allTimeCorrect = UserDefaults.standard.integer(forKey: "All-Time Correct")
     var currentDate = "currentDate"
     let df = DateFormatter()
     var isDismissedForMidnight = false
+    var main = ViewController()
     
  
     
 
     override func viewDidLoad() {
+        print("this is  the print in the correct view controller \(guessesCount)")
         updateCurrentDate()
         updateTotalCorrect()
         countdownTimerUpdate() // setting initial label before timer updates
         startTimer()
         todaysCharacter.text = "Today's character was \(correctCharacter)"
         todaysCharacterImage?.image = correctImageSecondView
+        updateGuessCount()
         UserDefaults.standard.set(correctCharacter ,forKey: "winningCharacter")
 
     }
     
+    func updateGuessCount() {
+        print("this is the print in the update guess count \(guessesCount)")
+        guessesTextLabel.text = ("Guesses: \(guessesCount)")
+        
+    }
+    
+    
    
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         updateCurrentDate()
+//        guessesCount = UserDefaults.standard.integer(forKey: "guessCount")
+//        updateGuessCount()
+        let storedGuessesCount = UserDefaults.standard.integer(forKey: "guessCount")
+            print("Retrieved guessCount in viewWillAppear: \(storedGuessesCount)")
+            
+            guessesCount = storedGuessesCount
+            updateGuessCount()
     }
  
     
@@ -89,7 +110,6 @@ class CharacterCorrectViewController: UIViewController {
     func updateCurrentDate() {
         df.dateFormat = "MM/dd"
         currentDate = df.string(from: Date())
-        print("1")
     }
     
     

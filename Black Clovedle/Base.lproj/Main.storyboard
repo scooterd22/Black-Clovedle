@@ -29,7 +29,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gow-xk-jRG">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gow-xk-jRG">
                                         <rect key="frame" x="255" y="8" width="78" height="34.333333333333336"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
@@ -38,8 +38,9 @@
                                             <action selector="submitPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4PV-AW-1b9"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Fi-Ot-NEr" userLabel="Chevron">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Fi-Ot-NEr" userLabel="Chevron">
                                         <rect key="frame" x="210" y="8" width="30" height="34.333333333333336"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="chevron.down" catalog="system"/>
                                         <connections>
@@ -214,21 +215,24 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All-time correct:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Uo-Ie-Pc2">
-                                        <rect key="frame" x="0.0" y="632.33333333333337" width="375" height="169.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="632.33333333333337" width="375" height="136"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="guessesTextLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ViR-7m-ncb">
+                                        <rect key="frame" x="0.0" y="768.33333333333337" width="375" height="33.666666666666629"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="6Uo-Ie-Pc2" firstAttribute="leading" secondItem="JGd-XB-7cc" secondAttribute="leading" id="Lgj-zq-7ty"/>
-                                    <constraint firstAttribute="trailing" secondItem="6Uo-Ie-Pc2" secondAttribute="trailing" id="R4x-z0-EjZ"/>
                                     <constraint firstItem="UcM-re-tft" firstAttribute="leading" secondItem="JGd-XB-7cc" secondAttribute="leading" id="VIl-lc-bk3"/>
                                     <constraint firstItem="UcM-re-tft" firstAttribute="top" secondItem="ZIJ-L1-Bwk" secondAttribute="bottom" constant="34" id="Wxg-3D-vv8"/>
-                                    <constraint firstItem="6Uo-Ie-Pc2" firstAttribute="top" secondItem="Afm-dT-AfK" secondAttribute="bottom" id="YcQ-Z6-rai"/>
                                     <constraint firstItem="Afm-dT-AfK" firstAttribute="top" secondItem="UcM-re-tft" secondAttribute="bottom" id="dON-Dy-UeT"/>
                                     <constraint firstAttribute="trailing" secondItem="Afm-dT-AfK" secondAttribute="trailing" id="dms-RH-g0z"/>
-                                    <constraint firstAttribute="bottom" secondItem="6Uo-Ie-Pc2" secondAttribute="bottom" id="mEr-X4-JF8"/>
                                     <constraint firstItem="Afm-dT-AfK" firstAttribute="leading" secondItem="JGd-XB-7cc" secondAttribute="leading" id="mLZ-pa-JXX"/>
                                     <constraint firstItem="ZIJ-L1-Bwk" firstAttribute="top" secondItem="DtU-6L-eSu" secondAttribute="bottom" constant="34" id="yTi-Ib-NHV"/>
                                 </constraints>
@@ -246,6 +250,7 @@
                     <navigationItem key="navigationItem" id="rMk-SO-38a"/>
                     <connections>
                         <outlet property="countdown" destination="Afm-dT-AfK" id="MGS-xd-B0J"/>
+                        <outlet property="guessesTextLabel" destination="ViR-7m-ncb" id="Nas-yR-uP2"/>
                         <outlet property="todaysCharacter" destination="DtU-6L-eSu" id="yUg-f5-XCP"/>
                         <outlet property="todaysCharacterImage" destination="ZIJ-L1-Bwk" id="dGt-bT-VmT"/>
                         <outlet property="totalCorrect" destination="6Uo-Ie-Pc2" id="wiJ-n0-rsZ"/>
